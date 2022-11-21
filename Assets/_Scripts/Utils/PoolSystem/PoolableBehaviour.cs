@@ -5,7 +5,7 @@ namespace Utils.PoolSystem
     public abstract class PoolableBehaviour<T> : MonoBehaviour, IPoolableBehaviour<T> 
         where T : MonoBehaviour, IPoolableBehaviour<T>
     {
-        protected abstract BehaviourPool<T> Pool { get; set; }
+        protected virtual BehaviourPool<T> Pool { get; set; }
 
         
         public virtual void SetPosition(Vector3 position)
