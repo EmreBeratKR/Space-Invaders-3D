@@ -5,12 +5,29 @@ namespace SpaceShipSystem
 {
     public class SpaceShipInput : BehaviourModule<SpaceShip>
     {
+        private void Awake()
+        {
+            AddListeners();
+        }
+
+        private void OnDestroy()
+        {
+            RemoveListeners();
+        }
+        
         private void Update()
         {
             HandleMovementInput();
             HandleTurretInput();
         }
 
+
+        private void OnShotByInvader(SpaceShip.EventResponse response)
+        {
+            enabled = false;
+            MainBehaviour.OnCancelMove?.Invoke(new SpaceShip.EventResponse());
+        }
+        
 
         private void HandleTurretInput()
         {
@@ -55,6 +72,22 @@ namespace SpaceShipSystem
             else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
             {
                 MainBehaviour.OnCancelMove?.Invoke(new SpaceShip.EventResponse());
+            }
+        }
+
+        private void AddListeners()
+        {
+            if (MainBehaviour)
+            {
+                MainBehaviour.OnShotByInvader += OnShotByInvader;
+            }
+        }
+
+        private void RemoveListeners()
+        {
+            if (MainBehaviour)
+            {
+                MainBehaviour.OnShotByInvader -= OnShotByInvader;
             }
         }
     }

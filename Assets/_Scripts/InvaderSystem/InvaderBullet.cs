@@ -1,4 +1,5 @@
 using BulletSystem;
+using SpaceShipSystem;
 using UnityEngine;
 using Utils;
 
@@ -13,6 +14,12 @@ namespace InvaderSystem
         private Invader m_Shooter;
         
         
+        private void OnTriggerEnter(Collider other)
+        {
+            CheckSpaceShipHit(other);
+        }
+        
+        
         public override void Shoot(Invader shooter, Vector3 position, Vector3 direction, float speed)
         {
             m_Shooter = shooter;
@@ -20,6 +27,15 @@ namespace InvaderSystem
             bodyTransform.position = position;
             bodyTransform.up = direction;
             body.velocity = direction * speed;
+        }
+        
+        
+        private void CheckSpaceShipHit(Collider other)
+        {
+            if (!other.TryGetComponent(out SpaceShipCollider spaceShipCollider)) return;
+            
+            spaceShipCollider.OnShotByInvaderBullet(m_Shooter);
+            Release();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SpaceShipSystem
         {
             if (!other.TryGetComponent(out InvaderCollider invaderCollider)) return;
             
-            invaderCollider.HitBySpaceShipBullet(m_Shooter);
+            invaderCollider.OnShotBySpaceShipBullet(m_Shooter);
             Release();
         }
     }

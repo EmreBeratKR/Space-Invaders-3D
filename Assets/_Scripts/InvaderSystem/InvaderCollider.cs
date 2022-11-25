@@ -23,7 +23,7 @@ namespace InvaderSystem
         private Collider m_Collider;
         
         
-        public void HitBySpaceShipBullet(SpaceShip spaceShip)
+        public void OnShotBySpaceShipBullet(SpaceShip spaceShip)
         {
             Collider.enabled = false;
 
@@ -32,7 +32,7 @@ namespace InvaderSystem
 
             };
             
-            MainBehaviour.OnHitBySpaceShipBullet?.Invoke(response);
+            MainBehaviour.OnShotBySpaceShip?.Invoke(response);
         }
 
 

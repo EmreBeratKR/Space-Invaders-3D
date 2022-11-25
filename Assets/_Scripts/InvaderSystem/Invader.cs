@@ -6,9 +6,9 @@ using Utils.PoolSystem;
 
 namespace InvaderSystem
 {
-    public abstract class Invader : PoolableBehaviour<Invader>, IMainBehaviour
+    public abstract class Invader : PoolableBehaviour<Invader>, IMainBehaviour, IInvader
     {
-        public UnityAction<EventResponse> OnHitBySpaceShipBullet;
+        public UnityAction<EventResponse> OnShotBySpaceShip;
         public UnityAction<EventResponse> OnDied;
         public UnityAction<EventResponse> OnDieAnimationComplete;
         public UnityAction<EventResponse> OnShootCommand;
@@ -37,9 +37,9 @@ namespace InvaderSystem
         }
 
 
-        private void OnHitBySpaceShipBullet_Internal(EventResponse response)
+        private void OnShotBySpaceShip_Internal(EventResponse response)
         {
-            Die();
+            TakeDamage();
         }
 
         private void OnDieAnimationComplete_Internal(EventResponse response)
@@ -47,6 +47,12 @@ namespace InvaderSystem
             Release();
         }
 
+        
+        public void TakeDamage()
+        {
+            Die();
+        }
+        
 
         private Invader NeighbourRaycast(Vector3 direction)
         {
@@ -71,13 +77,13 @@ namespace InvaderSystem
         
         private void AddListeners()
         {
-            OnHitBySpaceShipBullet += OnHitBySpaceShipBullet_Internal;
+            OnShotBySpaceShip += OnShotBySpaceShip_Internal;
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
         }
 
         private void RemoveListeners()
         {
-            OnHitBySpaceShipBullet -= OnHitBySpaceShipBullet_Internal;
+            OnShotBySpaceShip -= OnShotBySpaceShip_Internal;
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
         }
 
