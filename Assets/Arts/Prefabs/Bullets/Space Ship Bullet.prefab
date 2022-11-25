@@ -74,10 +74,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70cbe09b0c22437f9556711254d5e167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 5129926974776804843}
---- !u!54 &5129926974776804843 stripped
+  body: {fileID: 6137575395163495665}
+--- !u!54 &6137575395163495665 stripped
 Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 1935325296424151905, guid: 8c78eac607e4f0a44ba0991dde602786, type: 3}
+  m_CorrespondingSourceObject: {fileID: 632629512778134139, guid: 8c78eac607e4f0a44ba0991dde602786, type: 3}
   m_PrefabInstance: {fileID: 6767363764442656394}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6481933075277392379 stripped
