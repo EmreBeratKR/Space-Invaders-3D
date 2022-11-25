@@ -8,9 +8,23 @@ namespace SpaceShipSystem
         private void Update()
         {
             HandleMovementInput();
+            HandleTurretInput();
         }
 
 
+        private void HandleTurretInput()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                var response = new SpaceShip.EventResponse()
+                {
+
+                };
+                
+                MainBehaviour.OnTurretShoot?.Invoke(response);
+            }
+        }
+        
         private void HandleMovementInput()
         {
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
