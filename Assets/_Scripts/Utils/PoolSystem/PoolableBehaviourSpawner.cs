@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Utils.PoolSystem
 {
     public abstract class PoolableBehaviourSpawner<T> : MonoBehaviour
-        where T : MonoBehaviour, IPoolableBehaviour<T>
+        where T : PoolableBehaviour<T>, IPoolableBehaviour<T>
     {
         protected virtual BehaviourPool<T> Pool { get; set; }
         protected abstract T Prefab { get; }

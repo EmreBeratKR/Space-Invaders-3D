@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Utils.PoolSystem
 {
     public abstract class PoolableBehaviour<T> : MonoBehaviour, IPoolableBehaviour<T> 
-        where T : MonoBehaviour, IPoolableBehaviour<T>
+        where T : PoolableBehaviour<T>, IPoolableBehaviour<T>
     {
         protected virtual BehaviourPool<T> Pool { get; set; }
 
