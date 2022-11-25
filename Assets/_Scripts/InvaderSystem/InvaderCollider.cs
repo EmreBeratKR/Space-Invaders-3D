@@ -34,5 +34,11 @@ namespace InvaderSystem
             
             MainBehaviour.OnHitBySpaceShipBullet?.Invoke(response);
         }
+
+
+        public static explicit operator Invader(InvaderCollider invaderCollider)
+        {
+            return invaderCollider.MainBehaviour;
+        }
     }
 }

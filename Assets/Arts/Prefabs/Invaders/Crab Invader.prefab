@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7003923339345494543, guid: a202fc7c003c344469d4c489de42ddf0, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 4526963288456004454, guid: 5e233f51058e11b4cbac91c5010eb8bc, type: 3}
     - target: {fileID: 7503586903917329551, guid: a202fc7c003c344469d4c489de42ddf0, type: 3}
       propertyPath: m_Controller
       value: 
