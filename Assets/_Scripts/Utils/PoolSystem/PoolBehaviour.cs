@@ -7,7 +7,7 @@ namespace Utils.PoolSystem
 {
     [Serializable]
     public class BehaviourPool<T> 
-        where T : PoolableBehaviour<T>, IPoolableBehaviour<T>
+        where T : MonoBehaviour, IPoolableBehaviour<T>
     {
         private const int InfinityCapacity = -1;
         
