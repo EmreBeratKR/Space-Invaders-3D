@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4356921807562664640, guid: 8c78eac607e4f0a44ba0991dde602786, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7245052523304440921, guid: 8c78eac607e4f0a44ba0991dde602786, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -58,6 +62,10 @@ PrefabInstance:
     - target: {fileID: 7429009005894276039, guid: 8c78eac607e4f0a44ba0991dde602786, type: 3}
       propertyPath: m_Name
       value: Space Ship Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285516863691129502, guid: 8c78eac607e4f0a44ba0991dde602786, type: 3}
+      propertyPath: m_Size.x
+      value: 2.94
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c78eac607e4f0a44ba0991dde602786, type: 3}

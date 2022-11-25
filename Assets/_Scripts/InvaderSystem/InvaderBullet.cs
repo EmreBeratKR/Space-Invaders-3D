@@ -12,10 +12,11 @@ namespace InvaderSystem
         
         
         private Invader m_Shooter;
-        
-        
-        private void OnTriggerEnter(Collider other)
+
+
+        protected override void OnTriggerEnter(Collider other)
         {
+            base.OnTriggerEnter(other);
             CheckSpaceShipHit(other);
         }
         

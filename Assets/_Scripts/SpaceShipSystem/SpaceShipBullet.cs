@@ -12,10 +12,11 @@ namespace SpaceShipSystem
 
 
         private SpaceShip m_Shooter;
-        
 
-        private void OnTriggerEnter(Collider other)
+
+        protected override void OnTriggerEnter(Collider other)
         {
+            base.OnTriggerEnter(other);
             CheckEnemyHit(other);
         }
         
