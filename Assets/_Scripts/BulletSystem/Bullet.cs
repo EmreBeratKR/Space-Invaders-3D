@@ -16,11 +16,17 @@ namespace BulletSystem
         }
 
 
+        protected virtual void OnHitByBullet()
+        {
+            Release();
+        }
+        
+
         private void CheckBulletHit(Collider other)
         {
             if (!other.TryGetComponent(out IBulletCollider bulletCollider)) return;
             
-            Release();
+            OnHitByBullet();
         }
     }
 }
