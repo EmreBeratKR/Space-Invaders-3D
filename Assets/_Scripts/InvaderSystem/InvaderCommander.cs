@@ -15,6 +15,7 @@ namespace InvaderSystem
         [Header(Keyword.Values)] 
         [SerializeField, Min(0f)] private float invadeLowerSpeed;
         [SerializeField, Min(0f)] private float rateOfFirePerSecond;
+        [SerializeField, Min(0f)] private AnimationCurve invasionSpeedCurve;
         [SerializeField, Min(0f)] private float maxInvasionSpeed;
         [SerializeField, Min(0f)] private float minInvasionSpeed;
         [SerializeField, Min(0f)] private float invasionSpeed;
@@ -152,7 +153,7 @@ namespace InvaderSystem
             var invaders = Invaders;
             var currentInvaderCount = invaders.Length;
             var invaderExistenceRate = currentInvaderCount / (float) m_StartInvaderCount;
-            m_InvasionSpeed = CalculateInvasionStepSpeed(invaderExistenceRate);
+            m_InvasionSpeed = CalculateInvasionStepSpeed(1f - invaderExistenceRate);
 
             var response = new Invader.EventResponse()
             {
@@ -167,7 +168,9 @@ namespace InvaderSystem
 
         private float CalculateInvasionStepSpeed(float t)
         {
-            return Mathf.Lerp(maxInvasionSpeed, minInvasionSpeed, t);
+            var evaluatedT = invasionSpeedCurve.Evaluate(t);
+            Debug.Log($"{t} -> {evaluatedT}");
+            return Mathf.Lerp(minInvasionSpeed, maxInvasionSpeed, evaluatedT);
         }
 
         private void AddListeners()

@@ -644,7 +644,40 @@ MonoBehaviour:
   mainSpawner: {fileID: 1799752983}
   invadeLowerSpeed: 3.5
   rateOfFirePerSecond: 1.5
-  maxInvasionSpeed: 10
+  invasionSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.83591795
+      value: 0.21200787
+      inSlope: 0.5160317
+      outSlope: 0.5160317
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 4.4749494
+      outSlope: 4.4749494
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13361162
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxInvasionSpeed: 50
   minInvasionSpeed: 1
   invasionSpeed: 0.75
 --- !u!1001 &1155923995
