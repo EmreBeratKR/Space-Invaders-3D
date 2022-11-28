@@ -31,12 +31,6 @@ namespace SpaceShipSystem
         }
 
 
-        protected override void OnHitByBullet()
-        {
-            base.OnHitByBullet();
-        }
-
-
         private void CheckEnemyHit(Collider other)
         {
             if (!other.TryGetComponent(out InvaderCollider invaderCollider)) return;
