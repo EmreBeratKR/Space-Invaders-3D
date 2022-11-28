@@ -38,28 +38,24 @@ namespace InvaderSystem
         private InvaderMainSpawner m_MainSpawner;
 
 
-        public Coroutine SpawnInvaders()
+        public void SpawnInvaders()
         {
-            return StartCoroutine(Routine());
-            
-            
-            IEnumerator Routine()
-            {
-                var startX = bottomLeftGridPosition.x;
-                var endX = topRightGridPosition.x;
-                var startY = bottomLeftGridPosition.y;
-                var endY = topRightGridPosition.y;
+            var startX = bottomLeftGridPosition.x;
+            var endX = topRightGridPosition.x;
+            var startY = bottomLeftGridPosition.y;
+            var endY = topRightGridPosition.y;
                 
-                for (int y = startY; y <= endY; y++)
+            for (int y = startY; y <= endY; y++)
+            {
+                for (int x = startX; x <= endX; x++)
                 {
-                    for (int x = startX; x <= endX; x++)
-                    {
-                        var gridPosition = new Vector2Int(x, y);
-                        var position = MainSpawner.EvaluateGridPosition(gridPosition);
-                        Spawn(position, Quaternion.identity, transform);
+                    var gridPosition = new Vector2Int(x, y);
+                    var position = MainSpawner.EvaluateGridPosition(gridPosition);
+                    var newInvader = Spawn(position, Quaternion.identity, transform);
+                        
+                    newInvader.InjectCommander(MainSpawner.Commander);
+                    newInvader.InjectMainSpawner(MainSpawner);
 
-                        yield return MainSpawner.SpawnInterval;
-                    }
                 }
             }
         }

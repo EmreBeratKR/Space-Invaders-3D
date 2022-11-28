@@ -12,8 +12,15 @@ namespace InvaderSystem
         public UnityAction<EventResponse> OnDied;
         public UnityAction<EventResponse> OnDieAnimationComplete;
         public UnityAction<EventResponse> OnShootCommand;
+        public UnityAction<EventResponse> OnInvadeLowerCommand;
+        public UnityAction<EventResponse> OnInvasionStep;
+        public UnityAction<EventResponse> OnReachInvasionBorder;
+        public UnityAction<EventResponse> OnInvasionSpeedChanged;
 
 
+        public InvaderCommander Commander { get; private set; }
+        public InvaderMainSpawner MainSpawner { get; private set; }
+        
         public Vector3 Position
         {
             get => transform.position;
@@ -44,16 +51,42 @@ namespace InvaderSystem
 
         private void OnDieAnimationComplete_Internal(EventResponse response)
         {
+            Commander.OnInvaderDied(new EventResponse());
             Release();
         }
 
+        private void OnReachInvasionBorder_Internal(EventResponse response)
+        {
+            Commander.OnInvaderReachInvasionBorder(response);
+        }
+
+
+        public void HandleInvasionStep()
+        {
+            var response = new Invader.EventResponse()
+            {
+                invasionMovement = Commander.InvasionMovement
+            };
+            
+            OnInvasionStep?.Invoke(response);
+        }
         
         public void TakeDamage()
         {
             Die();
         }
-        
 
+        public void InjectCommander(InvaderCommander commander)
+        {
+            Commander = commander;
+        }
+        
+        public void InjectMainSpawner(InvaderMainSpawner mainSpawner)
+        {
+            MainSpawner = mainSpawner;
+        }
+        
+        
         private Invader NeighbourRaycast(Vector3 direction)
         {
             const float maxDistance = 100f;
@@ -74,24 +107,28 @@ namespace InvaderSystem
             
             OnDied?.Invoke(response);
         }
-        
+
         private void AddListeners()
         {
             OnShotBySpaceShip += OnShotBySpaceShip_Internal;
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
+            OnReachInvasionBorder += OnReachInvasionBorder_Internal;
         }
 
         private void RemoveListeners()
         {
             OnShotBySpaceShip -= OnShotBySpaceShip_Internal;
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
+            OnReachInvasionBorder -= OnReachInvasionBorder_Internal;
         }
 
 
         [Serializable]
         public struct EventResponse
         {
-            
+            public Vector3 invasionMovement;
+            public Vector3 invadeLowerMovement;
+            public float invasionSpeed;
         }
     }
 }

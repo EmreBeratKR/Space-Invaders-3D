@@ -1,22 +1,23 @@
 using System;
-using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace InvaderSystem
 {
     public class InvaderMainSpawner : MonoBehaviour
     {
-        [Header(Keyword.References)]
+        [Header(Keyword.References)] 
+        [SerializeField] private InvaderCommander commander;
         [SerializeField] private Transform bottomLeftTransform;
         [SerializeField] private Transform topRightTransform;
-        
-        [Header(Keyword.Values)]
-        [SerializeField] private float spawnInterval;
 
 
-        public WaitForSeconds SpawnInterval => new WaitForSeconds(spawnInterval);
-        
+        public UnityAction<EventResponse> OnSpawnComplete;
+
+
+        public InvaderCommander Commander => commander;
+
 
         private Vector3 BottomLeftPoint => bottomLeftTransform.position;
         private Vector3 TopRightPoint => topRightTransform.position;
@@ -75,16 +76,25 @@ namespace InvaderSystem
 
         private void SpawnAll()
         {
-            StartCoroutine(Routine());
-            
-
-            IEnumerator Routine()
-            {
-                foreach (var subSpawner in SubSpawners)
-                {
-                    yield return subSpawner.SpawnInvaders();
-                }
+            foreach (var subSpawner in SubSpawners)
+            { 
+                subSpawner.SpawnInvaders();
             }
+
+            var response = new EventResponse()
+            {
+
+            };
+                
+            OnSpawnComplete?.Invoke(response);
+        }
+        
+        
+        
+        [Serializable]
+        public struct EventResponse
+        {
+            
         }
     }
 }

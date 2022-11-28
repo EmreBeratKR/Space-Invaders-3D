@@ -11,7 +11,18 @@ namespace InvaderSystem
 
 
         private static readonly int DieTriggerHash = Animator.StringToHash("die");
+        private static readonly int InvasionSpeedFloatHash = Animator.StringToHash("invasionSpeed");
 
+
+        private float InvasionSpeed
+        {
+            get => animator.GetFloat(InvasionSpeedFloatHash);
+            set => animator.SetFloat(InvasionSpeedFloatHash, value);
+        }
+        
+
+        private bool m_HasCommanderListeners;
+        
 
         private void OnEnable()
         {
@@ -23,10 +34,15 @@ namespace InvaderSystem
             RemoveListeners();
         }
 
-
         private void OnDied(Invader.EventResponse response)
         {
             PlayDie();
+        }
+
+        private void OnInvasionSpeedChanged(Invader.EventResponse response)
+        {
+            var newInvasionSpeed = response.invasionSpeed;
+            InvasionSpeed = newInvasionSpeed;
         }
 
 
@@ -40,6 +56,7 @@ namespace InvaderSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnDied += OnDied;
+                MainBehaviour.OnInvasionSpeedChanged += OnInvasionSpeedChanged;
             }
         }
 
@@ -48,6 +65,7 @@ namespace InvaderSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnDied -= OnDied;
+                MainBehaviour.OnInvasionSpeedChanged -= OnInvasionSpeedChanged;
             }
         }
     }

@@ -13,5 +13,10 @@ namespace InvaderSystem
             
             MainBehaviour.OnDieAnimationComplete?.Invoke(response);
         }
+
+        private void OnInvasionStepAnimation()
+        {
+            MainBehaviour.HandleInvasionStep();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using SpaceShipSystem;
 using UnityEngine;
 using Utils.ModularBehaviour;
@@ -27,12 +28,12 @@ namespace InvaderSystem
         {
             Collider.enabled = false;
 
-            var response = new Invader.EventResponse()
-            {
+            MainBehaviour.OnShotBySpaceShip?.Invoke(new Invader.EventResponse());
+        }
 
-            };
-            
-            MainBehaviour.OnShotBySpaceShip?.Invoke(response);
+        public void OnReachInvasionBorder()
+        {
+            MainBehaviour.OnReachInvasionBorder?.Invoke(new Invader.EventResponse());
         }
 
 
