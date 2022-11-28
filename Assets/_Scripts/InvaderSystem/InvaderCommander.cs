@@ -169,7 +169,6 @@ namespace InvaderSystem
         private float CalculateInvasionStepSpeed(float t)
         {
             var evaluatedT = invasionSpeedCurve.Evaluate(t);
-            Debug.Log($"{t} -> {evaluatedT}");
             return Mathf.Lerp(minInvasionSpeed, maxInvasionSpeed, evaluatedT);
         }
 

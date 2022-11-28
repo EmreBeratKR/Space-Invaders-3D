@@ -11,6 +11,7 @@ namespace SpaceShipSystem
         
         [Header(Keyword.Values)]
         [SerializeField, Min(0f)] private float speed;
+        [SerializeField, Min(0f)] private float movementRange;
         
         
         private void OnEnable()
@@ -29,13 +30,33 @@ namespace SpaceShipSystem
             var direction = response.movementDirection;
 
             body.velocity = Vector3.right * (direction * speed);
+            ValidatePosition();
         }
 
         private void OnCancelMove(SpaceShip.EventResponse response)
         {
             body.velocity = Vector3.zero;
+            ValidatePosition();
         }
 
+
+        private void ValidatePosition()
+        {
+            var position = body.position;
+
+            if (position.x > movementRange)
+            {
+                position.x = movementRange;
+                body.transform.position = position;
+                return;
+            }
+
+            if (position.x < -movementRange)
+            {
+                position.x = -movementRange;
+                body.transform.position = position;
+            }
+        }
 
         private void AddListeners()
         {
