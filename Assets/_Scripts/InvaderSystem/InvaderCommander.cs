@@ -11,6 +11,7 @@ namespace InvaderSystem
     {
         [Header(Keyword.References)]
         [SerializeField] private InvaderMainSpawner mainSpawner;
+        [SerializeField] private BonusInvaderMainSpawner bonusMainSpawner;
 
         [Header(Keyword.Values)] 
         [SerializeField, Min(0f)] private float invadeLowerSpeed;
@@ -19,6 +20,7 @@ namespace InvaderSystem
         [SerializeField, Min(0f)] private float maxInvasionSpeed;
         [SerializeField, Min(0f)] private float minInvasionSpeed;
         [SerializeField, Min(0f)] private float invasionSpeed;
+        [SerializeField] private RangeFloat ufoSpawnIntervalRange;
 
 
         public UnityAction<EventResponse> OnInvasionBegin;
@@ -78,6 +80,7 @@ namespace InvaderSystem
             CacheStartInvaderCount();
             CommandShoot();
             StartInvasion();
+            CommandUfoSpawn();
         }
         
         private void CacheStartInvaderCount()
@@ -132,6 +135,22 @@ namespace InvaderSystem
             foreach (var invader in invaders)
             {
                 invader.OnInvadeLowerCommand?.Invoke(response);
+            }
+        }
+
+        private void CommandUfoSpawn()
+        {
+            StartCoroutine(Routine());
+            
+            
+            IEnumerator Routine()
+            {
+                while (true)
+                {
+                    var randomInterval = ufoSpawnIntervalRange.Random;
+                    yield return new WaitForSeconds(randomInterval);
+                    bonusMainSpawner.SpawnUfo();
+                }
             }
         }
 

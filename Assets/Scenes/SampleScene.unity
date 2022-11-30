@@ -123,6 +123,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &261498142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 261498143}
+  m_Layer: 0
+  m_Name: Sub Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &261498143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261498142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1527148257}
+  m_Father: {fileID: 927339197}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295906105
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +477,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35111915f9834bd7b245ba0f3e814971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &927339196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927339197}
+  - component: {fileID: 927339198}
+  m_Layer: 0
+  m_Name: Bonus Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &927339197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927339196}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 261498143}
+  m_Father: {fileID: 1082054639}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &927339198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927339196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c11079cc114eb2bd3947878c5b067a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ufoBonusInvaderSpawner: {fileID: 1527148258}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +704,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1799752982}
+  - {fileID: 927339197}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -642,6 +721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSpawner: {fileID: 1799752983}
+  bonusMainSpawner: {fileID: 927339198}
   invadeLowerSpeed: 3.5
   rateOfFirePerSecond: 1.5
   invasionSpeedCurve:
@@ -680,6 +760,9 @@ MonoBehaviour:
   maxInvasionSpeed: 50
   minInvasionSpeed: 1
   invasionSpeed: 0.75
+  ufoSpawnIntervalRange:
+    min: 20
+    max: 40
 --- !u!1001 &1155923995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -921,6 +1004,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 781874752755964126, guid: 84c9d5a29aea35d4c8b1c34f24f28f03, type: 3}
   m_PrefabInstance: {fileID: 1380207995}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1527148257 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+  m_PrefabInstance: {fileID: 7320728774941705843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1527148258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7320728776099752081, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+  m_PrefabInstance: {fileID: 7320728774941705843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86754d7079cc4809a3855101978d2d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1799752981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,3 +1426,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a859c8d4bec880e4ca796a5e2e61e637, type: 3}
+--- !u!1001 &7320728774941705843
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 261498143}
+    m_Modifications:
+    - target: {fileID: 7307831167399259032, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -61.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307831167399259032, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 52.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752081, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 5212105401229270601, guid: 94bb8e6310adb444f9b085d1230d3329, type: 3}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752082, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320728776099752083, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}
+      propertyPath: m_Name
+      value: Ufo Bonus Invader Sub Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e03b759febc3fe4cb257c997f273412, type: 3}

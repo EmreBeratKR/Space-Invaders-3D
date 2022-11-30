@@ -18,6 +18,8 @@ namespace InvaderSystem
         private void CheckInvaderHit(Collider other)
         {
             if (!other.TryGetComponent(out InvaderCollider invaderCollider)) return;
+            
+            if (invaderCollider is BonusInvaderCollider) return;
 
             pairBorder.Enable();
             Disable();

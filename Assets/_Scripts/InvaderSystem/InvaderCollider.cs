@@ -1,4 +1,3 @@
-using System.Collections;
 using SpaceShipSystem;
 using UnityEngine;
 using Utils.ModularBehaviour;
@@ -7,7 +6,7 @@ namespace InvaderSystem
 {
     public class InvaderCollider : BehaviourModule<Invader>
     {
-        private Collider Collider
+        protected Collider Collider
         {
             get
             {
@@ -24,14 +23,14 @@ namespace InvaderSystem
         private Collider m_Collider;
         
         
-        public void OnShotBySpaceShipBullet(SpaceShip spaceShip)
+        public virtual void OnShotBySpaceShipBullet(SpaceShip spaceShip)
         {
             Collider.enabled = false;
 
             MainBehaviour.OnShotBySpaceShip?.Invoke(new Invader.EventResponse());
         }
 
-        public void OnReachInvasionBorder()
+        public virtual void OnReachInvasionBorder()
         {
             MainBehaviour.OnReachInvasionBorder?.Invoke(new Invader.EventResponse());
         }
