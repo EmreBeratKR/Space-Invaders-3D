@@ -27,6 +27,11 @@ namespace SpaceShipSystem
             enabled = false;
             MainBehaviour.OnCancelMove?.Invoke(new SpaceShip.EventResponse());
         }
+
+        private void OnRespawn(SpaceShip.EventResponse response)
+        {
+            enabled = true;
+        }
         
 
         private void HandleTurretInput()
@@ -80,6 +85,7 @@ namespace SpaceShipSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnShotByInvader += OnShotByInvader;
+                MainBehaviour.OnRespawn += OnRespawn;
             }
         }
 
@@ -88,6 +94,7 @@ namespace SpaceShipSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnShotByInvader -= OnShotByInvader;
+                MainBehaviour.OnRespawn -= OnRespawn;
             }
         }
     }

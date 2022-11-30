@@ -21,8 +21,19 @@ namespace SpaceShipSystem
 
 
         private Collider m_Collider;
-        
-        
+
+
+        private void OnEnable()
+        {
+            AddListeners();
+        }
+
+        private void OnDisable()
+        {
+            RemoveListeners();
+        }
+
+
         public void OnShotByInvaderBullet(Invader shooter)
         {
             Collider.enabled = false;
@@ -33,6 +44,29 @@ namespace SpaceShipSystem
             };
             
             MainBehaviour.OnShotByInvader?.Invoke(response);
+        }
+
+
+        private void OnRespawn(SpaceShip.EventResponse response)
+        {
+            Collider.enabled = true;
+        }
+
+
+        private void AddListeners()
+        {
+            if (MainBehaviour)
+            {
+                MainBehaviour.OnRespawn += OnRespawn;
+            }
+        }
+
+        private void RemoveListeners()
+        {
+            if (MainBehaviour)
+            {
+                MainBehaviour.OnRespawn -= OnRespawn;
+            }
         }
     }
 }
