@@ -8,6 +8,7 @@ namespace SpaceShipSystem
         private void Awake()
         {
             AddListeners();
+            Disable();
         }
 
         private void OnDestroy()
@@ -22,15 +23,20 @@ namespace SpaceShipSystem
         }
 
 
+        private void OnGameStart(Game.EventResponse response)
+        {
+            Enable();
+        }
+        
         private void OnShotByInvader(SpaceShip.EventResponse response)
         {
-            enabled = false;
+            Disable();
             MainBehaviour.OnCancelMove?.Invoke(new SpaceShip.EventResponse());
         }
 
         private void OnRespawn(SpaceShip.EventResponse response)
         {
-            enabled = true;
+            Enable();
         }
         
 
@@ -80,8 +86,20 @@ namespace SpaceShipSystem
             }
         }
 
+        private void Enable()
+        {
+            enabled = true;
+        }
+
+        private void Disable()
+        {
+            enabled = false;
+        }
+
         private void AddListeners()
         {
+            Game.OnStarted += OnGameStart;
+
             if (MainBehaviour)
             {
                 MainBehaviour.OnShotByInvader += OnShotByInvader;
@@ -91,6 +109,8 @@ namespace SpaceShipSystem
 
         private void RemoveListeners()
         {
+            Game.OnStarted -= OnGameStart;
+            
             if (MainBehaviour)
             {
                 MainBehaviour.OnShotByInvader -= OnShotByInvader;
