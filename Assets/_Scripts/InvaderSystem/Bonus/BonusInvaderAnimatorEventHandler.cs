@@ -6,6 +6,8 @@ namespace InvaderSystem
     {
         private void OnDieAnimationComplete()
         {
+            Game.Resume();
+            
             MainBehaviour.OnDieAnimationComplete?.Invoke(new BonusInvader.EventResponse());
         }
     }

@@ -6,7 +6,7 @@ namespace SpaceShipSystem
     {
         private void OnDieAnimationComplete()
         {
-            MainBehaviour.OnRespawn?.Invoke(new SpaceShip.EventResponse());
+            MainBehaviour.OnDieAnimationComplete?.Invoke(new SpaceShip.EventResponse());
         }
     }
 }

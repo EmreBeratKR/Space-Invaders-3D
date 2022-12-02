@@ -26,13 +26,24 @@ namespace InvaderSystem
         
         private void OnDied(BonusInvader.EventResponse response)
         {
+            ChangeUpdateMode(AnimatorUpdateMode.UnscaledTime);
             PlayDie();
+        }
+
+        private void OnDieAnimationComplete(BonusInvader.EventResponse response)
+        {
+            ChangeUpdateMode(AnimatorUpdateMode.Normal);
         }
 
 
         private void PlayDie()
         {
             animator.SetTrigger(DieTriggerHash);
+        }
+
+        private void ChangeUpdateMode(AnimatorUpdateMode updateMode)
+        {
+            animator.updateMode = updateMode;
         }
 
         private void AddListeners()

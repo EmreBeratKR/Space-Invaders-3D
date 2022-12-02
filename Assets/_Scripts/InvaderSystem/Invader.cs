@@ -60,6 +60,11 @@ namespace InvaderSystem
             Commander.OnInvaderReachInvasionBorder(response);
         }
 
+        private void OnDied_Internal(EventResponse response)
+        {
+            Game.Pause();
+        }
+
 
         public void HandleInvasionStep()
         {
@@ -113,6 +118,7 @@ namespace InvaderSystem
             OnShotBySpaceShip += OnShotBySpaceShip_Internal;
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
             OnReachInvasionBorder += OnReachInvasionBorder_Internal;
+            OnDied += OnDied_Internal;
         }
 
         private void RemoveListeners()
@@ -120,6 +126,7 @@ namespace InvaderSystem
             OnShotBySpaceShip -= OnShotBySpaceShip_Internal;
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
             OnReachInvasionBorder -= OnReachInvasionBorder_Internal;
+            OnDied -= OnDied_Internal;
         }
 
 

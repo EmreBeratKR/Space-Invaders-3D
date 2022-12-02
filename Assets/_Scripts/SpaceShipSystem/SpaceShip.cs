@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Utils;
 using Utils.ModularBehaviour;
 
 namespace SpaceShipSystem
@@ -13,6 +14,8 @@ namespace SpaceShipSystem
         public UnityAction<EventResponse> OnShotByInvader;
         public UnityAction<EventResponse> OnTakeDamage;
         public UnityAction<EventResponse> OnHealthChanged;
+        public UnityAction<EventResponse> OnNoHealthLeft;
+        public UnityAction<EventResponse> OnDieAnimationComplete;
         public UnityAction<EventResponse> OnRespawn;
 
 
@@ -31,6 +34,16 @@ namespace SpaceShipSystem
         {
             TakeDamage();
         }
+
+        private void OnRespawn_Internal(EventResponse response)
+        {
+            Game.Resume();
+        }
+
+        private void OnNoHealthLeft_Internal(EventResponse response)
+        {
+            Game.RaiseGameOver();
+        }
         
         
         public void TakeDamage()
@@ -47,19 +60,22 @@ namespace SpaceShipSystem
         private void AddListeners()
         {
             OnShotByInvader += OnShotByInvader_Internal;
+            OnRespawn += OnRespawn_Internal;
+            OnNoHealthLeft += OnNoHealthLeft_Internal;
         }
 
         private void RemoveListeners()
         {
             OnShotByInvader += OnShotByInvader_Internal;
+            OnRespawn -= OnRespawn_Internal;
+            OnNoHealthLeft -= OnNoHealthLeft_Internal;
         }
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         [Serializable]
         public struct EventResponse
         {

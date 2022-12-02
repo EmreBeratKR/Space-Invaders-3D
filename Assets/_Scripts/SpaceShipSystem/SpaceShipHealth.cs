@@ -35,6 +35,11 @@ namespace SpaceShipSystem
             TakeDamage(damageTaken);
         }
 
+        private void OnDieAnimationComplete(SpaceShip.EventResponse response)
+        {
+            TryRespawn();
+        }
+
         
         private void FullHealth()
         {
@@ -51,6 +56,8 @@ namespace SpaceShipSystem
 
         private void TakeDamage(int damage)
         {
+            Game.Pause();
+            
             var oldHealth = m_CurrentHealth;
             m_CurrentHealth = Mathf.Max(0, m_CurrentHealth - damage);
             var newHealth = m_CurrentHealth;
@@ -64,11 +71,26 @@ namespace SpaceShipSystem
             MainBehaviour.OnHealthChanged?.Invoke(response);
         }
 
+        private bool TryRespawn()
+        {
+            var hasHealth = m_CurrentHealth > 0;
+
+            if (hasHealth)
+            {
+                MainBehaviour.OnRespawn?.Invoke(new SpaceShip.EventResponse());
+                return true;
+            }
+            
+            MainBehaviour.OnNoHealthLeft?.Invoke(new SpaceShip.EventResponse());
+            return false;
+        }
+
         private void AddListeners()
         {
             if (MainBehaviour)
             {
                 MainBehaviour.OnTakeDamage += OnTakeDamage;
+                MainBehaviour.OnDieAnimationComplete += OnDieAnimationComplete;
             }
         }
 
@@ -77,6 +99,7 @@ namespace SpaceShipSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnTakeDamage -= OnTakeDamage;
+                MainBehaviour.OnDieAnimationComplete -= OnDieAnimationComplete;
             }
         }
     }

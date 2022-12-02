@@ -33,6 +33,11 @@ namespace InvaderSystem
         {
             Release();
         }
+
+        private void OnDied_Internal(EventResponse response)
+        {
+            Game.Pause();
+        }
         
 
         public virtual void TakeDamage()
@@ -55,12 +60,14 @@ namespace InvaderSystem
         {
             OnShotBySpaceShip += OnShotBySpaceShip_Internal;
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
+            OnDied += OnDied_Internal;
         }
 
         protected virtual void RemoveListeners()
         {
             OnShotBySpaceShip -= OnShotBySpaceShip_Internal;
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
+            OnDied -= OnDied_Internal;
         }
         
         

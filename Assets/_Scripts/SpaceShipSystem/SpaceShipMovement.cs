@@ -12,6 +12,12 @@ namespace SpaceShipSystem
         [Header(Keyword.Values)]
         [SerializeField, Min(0f)] private float speed;
         [SerializeField, Min(0f)] private float movementRange;
+
+
+        private float DeltaTime => m_IgnoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
+        
+        
+        private bool m_IgnoreTimeScale;
         
         
         private void OnEnable()
@@ -29,7 +35,7 @@ namespace SpaceShipSystem
         {
             var direction = response.movementDirection;
 
-            body.velocity = Vector3.right * (direction * speed);
+            body.transform.position += Vector3.right * (direction * speed * DeltaTime);
             ValidatePosition();
         }
 
@@ -37,6 +43,16 @@ namespace SpaceShipSystem
         {
             body.velocity = Vector3.zero;
             ValidatePosition();
+        }
+
+        private void OnGamePaused(Game.EventResponse response)
+        {
+            m_IgnoreTimeScale = response.allowPlayerToPlay;
+        }
+
+        private void OnGameResumed(Game.EventResponse response)
+        {
+            m_IgnoreTimeScale = false;
         }
 
 
@@ -64,6 +80,8 @@ namespace SpaceShipSystem
             {
                 MainBehaviour.OnPerformMove += OnPerformMove;
                 MainBehaviour.OnCancelMove += OnCancelMove;
+                Game.OnPaused += OnGamePaused;
+                Game.OnResumed += OnGameResumed;
             }
         }
 
@@ -73,6 +91,8 @@ namespace SpaceShipSystem
             {
                 MainBehaviour.OnPerformMove -= OnPerformMove;
                 MainBehaviour.OnCancelMove -= OnCancelMove;
+                Game.OnPaused -= OnGamePaused;
+                Game.OnResumed -= OnGameResumed;
             }
         }
     }
