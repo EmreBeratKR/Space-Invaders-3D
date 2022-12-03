@@ -266,8 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawner: {fileID: 2091817480}
   muzzleTransform: {fileID: 2093863778}
-  shootSpeed: 100
-  fireRatePerSecond: 1.5
+  shootSpeed: 150
 --- !u!114 &2091817480
 MonoBehaviour:
   m_ObjectHideFlags: 0

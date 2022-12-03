@@ -12,9 +12,8 @@ namespace SpaceShipSystem
 
         [Header(Keyword.Values)]
         [SerializeField, Min(0f)] private float shootSpeed;
-        [SerializeField, Min(0f)] private float fireRatePerSecond;
-        
-        
+
+
         private Vector3 MuzzlePosition => muzzleTransform.position;
         private Vector3 ShootDirection => muzzleTransform.up;
         private bool CanShoot => !bulletSpawner.HasActiveBullet;
