@@ -4,7 +4,7 @@ using Utils.ModularBehaviour;
 
 namespace SpaceShipSystem
 {
-    public class SpaceShipCollider : BehaviourModule<SpaceShip>
+    public class SpaceShipCollider : BehaviourModule<SpaceShip>, ITriggerEnterByInvader
     {
         private Collider Collider
         {
@@ -38,12 +38,7 @@ namespace SpaceShipSystem
         {
             Collider.enabled = false;
 
-            var response = new SpaceShip.EventResponse()
-            {
-
-            };
-            
-            MainBehaviour.OnShotByInvader?.Invoke(response);
+            MainBehaviour.OnShotByInvader?.Invoke(new SpaceShip.EventResponse());
         }
 
 
@@ -57,6 +52,14 @@ namespace SpaceShipSystem
             Collider.enabled = true;
         }
 
+        
+        public void TriggerEnter()
+        {
+            Collider.enabled = false;
+
+            MainBehaviour.OnShotByInvader?.Invoke(new SpaceShip.EventResponse());
+        }
+        
 
         private void AddListeners()
         {

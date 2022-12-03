@@ -48,17 +48,27 @@ public static class Game
         OnResumed?.Invoke(new EventResponse());
     }
     
-    public static void RaiseGameOver()
+    public static void RaiseGameOver(GameOverReason reason)
     {
-        OnGameOver?.Invoke(new EventResponse());
+        OnGameOver?.Invoke(new EventResponse()
+        {
+            gameOverReason = reason
+        });
     }
     
     
     
     
+    public enum GameOverReason
+    {
+        NoHealthLeft,
+        InvaderReachedBase
+    }
+    
     [Serializable]
     public struct EventResponse
     {
+        public GameOverReason gameOverReason;
         public bool allowPlayerToPlay;
     }
 }

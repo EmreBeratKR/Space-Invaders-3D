@@ -14,6 +14,13 @@ namespace BulletSystem
         
         [Header(Keyword.Values)]
         [SerializeField, Min(0f)] private float blastAnimationDuration;
+
+
+        public void PlayIdle()
+        {
+            baseMesh.SetActive(true);
+            blastMesh.SetActive(false);
+        }
         
         
         public void PlayBlast(UnityAction onComplete)
@@ -27,10 +34,7 @@ namespace BulletSystem
                 blastMesh.SetActive(true);
                 
                 yield return new WaitForSecondsRealtime(blastAnimationDuration);
-                
-                baseMesh.SetActive(true);
-                blastMesh.SetActive(false);
-                
+
                 onComplete?.Invoke();
             }
         }

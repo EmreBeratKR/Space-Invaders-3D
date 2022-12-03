@@ -40,6 +40,11 @@ namespace BulletSystem
         }
 
 
+        public override void OnAfterInitialized()
+        {
+            animator.PlayIdle();
+        }
+
         public virtual void OnBlast()
         {
             Stop();

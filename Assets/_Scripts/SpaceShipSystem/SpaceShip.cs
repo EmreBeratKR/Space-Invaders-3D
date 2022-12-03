@@ -42,7 +42,7 @@ namespace SpaceShipSystem
 
         private void OnNoHealthLeft_Internal(EventResponse response)
         {
-            Game.RaiseGameOver();
+            Game.RaiseGameOver(Game.GameOverReason.NoHealthLeft);
         }
         
         

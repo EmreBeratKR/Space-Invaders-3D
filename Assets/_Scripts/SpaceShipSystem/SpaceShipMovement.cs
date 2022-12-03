@@ -64,6 +64,11 @@ namespace SpaceShipSystem
             m_IgnoreTimeScale = false;
         }
 
+        private void OnGameOver(Game.EventResponse response)
+        {
+            m_IgnoreTimeScale = response.gameOverReason == Game.GameOverReason.InvaderReachedBase;
+        }
+
 
         private void ValidatePosition(ref Vector3 position)
         {
@@ -90,10 +95,12 @@ namespace SpaceShipSystem
             {
                 MainBehaviour.OnPerformMove += OnPerformMove;
                 MainBehaviour.OnCancelMove += OnCancelMove;
-                Game.OnStarted += OnGameStarted;
-                Game.OnPaused += OnGamePaused;
-                Game.OnResumed += OnGameResumed;
             }
+            
+            Game.OnStarted += OnGameStarted;
+            Game.OnPaused += OnGamePaused;
+            Game.OnResumed += OnGameResumed;
+            Game.OnGameOver += OnGameOver;
         }
 
         private void RemoveListeners()
@@ -102,10 +109,12 @@ namespace SpaceShipSystem
             {
                 MainBehaviour.OnPerformMove -= OnPerformMove;
                 MainBehaviour.OnCancelMove -= OnCancelMove;
-                Game.OnStarted -= OnGameStarted;
-                Game.OnPaused -= OnGamePaused;
-                Game.OnResumed -= OnGameResumed;
             }
+            
+            Game.OnStarted -= OnGameStarted;
+            Game.OnPaused -= OnGamePaused;
+            Game.OnResumed -= OnGameResumed;
+            Game.OnGameOver -= OnGameOver;
         }
     }
 }
