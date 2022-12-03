@@ -9,6 +9,7 @@ namespace InvaderSystem
 {
     public abstract class Invader : PoolableBehaviour<Invader>, IMainBehaviour, IInvader
     {
+        public UnityAction<EventResponse> OnInitialized;
         public UnityAction<EventResponse> OnShotBySpaceShip;
         public UnityAction<EventResponse> OnDied;
         public UnityAction<EventResponse> OnDieAnimationComplete;
@@ -71,6 +72,11 @@ namespace InvaderSystem
             Release();
         }
 
+
+        public override void OnAfterInitialized()
+        {
+            OnInitialized?.Invoke(new EventResponse());
+        }
 
         public void HandleInvasionStep()
         {

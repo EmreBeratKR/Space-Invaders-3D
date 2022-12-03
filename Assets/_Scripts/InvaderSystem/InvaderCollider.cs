@@ -21,6 +21,23 @@ namespace InvaderSystem
 
 
         private Collider m_Collider;
+
+
+        private void OnEnable()
+        {
+            AddListeners();
+        }
+
+        private void OnDisable()
+        {
+            RemoveListeners();
+        }
+
+
+        private void OnInitialized(Invader.EventResponse response)
+        {
+            Collider.enabled = true;
+        }
         
         
         public virtual void OnShotBySpaceShipBullet(SpaceShip spaceShip)
@@ -39,6 +56,23 @@ namespace InvaderSystem
         public static explicit operator Invader(InvaderCollider invaderCollider)
         {
             return invaderCollider.MainBehaviour;
+        }
+
+
+        private void AddListeners()
+        {
+            if (MainBehaviour)
+            {
+                MainBehaviour.OnInitialized += OnInitialized;
+            }
+        }
+
+        private void RemoveListeners()
+        {
+            if (MainBehaviour)
+            {
+                MainBehaviour.OnInitialized -= OnInitialized;
+            }
         }
     }
 }

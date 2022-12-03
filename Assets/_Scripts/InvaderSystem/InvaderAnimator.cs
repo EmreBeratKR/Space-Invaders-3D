@@ -31,15 +31,16 @@ namespace InvaderSystem
             RemoveListeners();
         }
 
+
+        private void OnInitialized(Invader.EventResponse response)
+        {
+            ChangeUpdateMode(AnimatorUpdateMode.Normal);
+        }
+
         private void OnDied(Invader.EventResponse response)
         {
             ChangeUpdateMode(AnimatorUpdateMode.UnscaledTime);
             PlayDie();
-        }
-
-        private void OnDieAnimationComplete(Invader.EventResponse response)
-        {
-            ChangeUpdateMode(AnimatorUpdateMode.Normal);
         }
 
         private void OnInvasionSpeedChanged(Invader.EventResponse response)
@@ -64,7 +65,7 @@ namespace InvaderSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnDied += OnDied;
-                MainBehaviour.OnDieAnimationComplete += OnDieAnimationComplete;
+                MainBehaviour.OnInitialized += OnInitialized;
                 MainBehaviour.OnInvasionSpeedChanged += OnInvasionSpeedChanged;
             }
         }
@@ -74,7 +75,7 @@ namespace InvaderSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnDied -= OnDied;
-                MainBehaviour.OnDieAnimationComplete -= OnDieAnimationComplete;
+                MainBehaviour.OnInitialized -= OnInitialized;
                 MainBehaviour.OnInvasionSpeedChanged -= OnInvasionSpeedChanged;
             }
         }

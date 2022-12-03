@@ -7,11 +7,28 @@ namespace InvaderSystem
     {
         [Header(Keyword.References)]
         [SerializeField] private InvasionBorder pairBorder;
-        
-        
+
+
+        private void Awake()
+        {
+            AddListeners();
+        }
+
+        private void OnDestroy()
+        {
+            RemoveListeners();
+        }
+
+
         private void OnTriggerEnter(Collider other)
         {
             CheckInvaderHit(other);
+        }
+
+
+        private void OnGameStarted(Game.EventResponse response)
+        {
+            Enable();
         }
         
 
@@ -34,6 +51,16 @@ namespace InvaderSystem
         private void Disable()
         {
             gameObject.SetActive(false);
+        }
+
+        private void AddListeners()
+        {
+            Game.OnStarted += OnGameStarted;
+        }
+
+        private void RemoveListeners()
+        {
+            Game.OnStarted -= OnGameStarted;
         }
     }
 }
