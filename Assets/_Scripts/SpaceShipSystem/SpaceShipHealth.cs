@@ -11,12 +11,7 @@ namespace SpaceShipSystem
 
 
         private int m_CurrentHealth;
-
         
-        private void Start()
-        {
-            FullHealth();
-        }
 
         private void OnEnable()
         {
@@ -38,6 +33,11 @@ namespace SpaceShipSystem
         private void OnDieAnimationComplete(SpaceShip.EventResponse response)
         {
             TryRespawn();
+        }
+
+        private void OnGameStarted(Game.EventResponse response)
+        {
+            FullHealth();
         }
 
         
@@ -92,6 +92,8 @@ namespace SpaceShipSystem
                 MainBehaviour.OnTakeDamage += OnTakeDamage;
                 MainBehaviour.OnDieAnimationComplete += OnDieAnimationComplete;
             }
+
+            Game.OnStarted += OnGameStarted;
         }
 
         private void RemoveListeners()
@@ -101,6 +103,8 @@ namespace SpaceShipSystem
                 MainBehaviour.OnTakeDamage -= OnTakeDamage;
                 MainBehaviour.OnDieAnimationComplete -= OnDieAnimationComplete;
             }
+            
+            Game.OnStarted -= OnGameStarted;
         }
     }
 }

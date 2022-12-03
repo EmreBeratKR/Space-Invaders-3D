@@ -14,6 +14,9 @@ namespace SpaceShipSystem
         private static readonly int IdleTriggerHash = Animator.StringToHash("idle");
 
 
+        private State m_State;
+        
+
         private void OnEnable()
         {
             AddListeners();
@@ -34,15 +37,28 @@ namespace SpaceShipSystem
         {
             PlayIdle();
         }
+
+        private void OnGameStarted(Game.EventResponse response)
+        {
+            PlayIdle();
+        }
         
         
         private void PlayIdle()
         {
+            if (m_State == State.Idle) return;
+            
+            m_State = State.Idle;
+
             animator.SetTrigger(IdleTriggerHash);
         }
         
         private void PlayDie()
         {
+            if (m_State == State.Die) return;
+
+            m_State = State.Die;
+            
             animator.SetTrigger(DieTriggerHash);
         }
 
@@ -53,6 +69,8 @@ namespace SpaceShipSystem
                 MainBehaviour.OnTakeDamage += OnTakeDamage;
                 MainBehaviour.OnRespawn += OnRespawn;
             }
+
+            Game.OnStarted += OnGameStarted;
         }
 
         private void RemoveListeners()
@@ -62,6 +80,16 @@ namespace SpaceShipSystem
                 MainBehaviour.OnTakeDamage -= OnTakeDamage;
                 MainBehaviour.OnRespawn -= OnRespawn;
             }
+            
+            Game.OnStarted -= OnGameStarted;
+        }
+        
+        
+        
+        private enum State
+        {
+            Idle,
+            Die
         }
     }
 }

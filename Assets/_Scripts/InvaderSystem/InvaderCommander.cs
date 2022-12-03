@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using MainMenuSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
@@ -58,6 +59,11 @@ namespace InvaderSystem
         }
 
 
+        private void OnMainMenuLoaded(MainMenu.EventResponse response)
+        {
+            DeInitialize();
+        }
+        
         private void OnInvaderSpawnComplete(InvaderMainSpawner.EventResponse response)
         {
             Initialize();
@@ -81,6 +87,11 @@ namespace InvaderSystem
             CommandShoot();
             StartInvasion();
             CommandUfoSpawn();
+        }
+
+        private void DeInitialize()
+        {
+            StopAllCoroutines();
         }
         
         private void CacheStartInvaderCount()
@@ -197,6 +208,8 @@ namespace InvaderSystem
             {
                 mainSpawner.OnSpawnComplete += OnInvaderSpawnComplete;
             }
+
+            MainMenu.OnLoaded += OnMainMenuLoaded;
         }
 
         private void RemoveListeners()
@@ -205,6 +218,8 @@ namespace InvaderSystem
             {
                 mainSpawner.OnSpawnComplete -= OnInvaderSpawnComplete;
             }
+            
+            MainMenu.OnLoaded -= OnMainMenuLoaded;
         }
         
         

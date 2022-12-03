@@ -54,6 +54,23 @@ namespace InvaderSystem
         
 
         private InvaderSubSpawner[] m_SubSpawners;
+
+
+        private void OnEnable()
+        {
+            AddListeners();
+        }
+
+        private void OnDisable()
+        {
+            RemoveListeners();
+        }
+
+
+        private void OnGameStarted(Game.EventResponse response)
+        {
+            SpawnAll();
+        }
         
         
         public Vector3 EvaluateGridPosition(Vector2Int gridPosition)
@@ -65,12 +82,6 @@ namespace InvaderSystem
             var x = Mathf.Lerp(BottomLeftPoint.x, TopRightPoint.x, tx);
             var y = Mathf.Lerp(BottomLeftPoint.y, TopRightPoint.y, ty);
             return new Vector3(x, y, 0f);
-        }
-
-
-        private void Start()
-        {
-            SpawnAll();
         }
 
 
@@ -87,6 +98,16 @@ namespace InvaderSystem
             };
                 
             OnSpawnComplete?.Invoke(response);
+        }
+
+        private void AddListeners()
+        {
+            Game.OnStarted += OnGameStarted;
+        }
+
+        private void RemoveListeners()
+        {
+            Game.OnStarted -= OnGameStarted;
         }
         
         

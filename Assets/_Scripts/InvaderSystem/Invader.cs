@@ -1,4 +1,5 @@
 using System;
+using MainMenuSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils.ModularBehaviour;
@@ -65,6 +66,11 @@ namespace InvaderSystem
             Game.Pause();
         }
 
+        private void OnMainMenuLoaded(MainMenu.EventResponse response)
+        {
+            Release();
+        }
+
 
         public void HandleInvasionStep()
         {
@@ -119,6 +125,7 @@ namespace InvaderSystem
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
             OnReachInvasionBorder += OnReachInvasionBorder_Internal;
             OnDied += OnDied_Internal;
+            MainMenu.OnLoaded += OnMainMenuLoaded;
         }
 
         private void RemoveListeners()
@@ -127,6 +134,7 @@ namespace InvaderSystem
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
             OnReachInvasionBorder -= OnReachInvasionBorder_Internal;
             OnDied -= OnDied_Internal;
+            MainMenu.OnLoaded -= OnMainMenuLoaded;
         }
 
 

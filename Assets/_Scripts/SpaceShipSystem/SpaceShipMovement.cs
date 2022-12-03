@@ -8,13 +8,15 @@ namespace SpaceShipSystem
     {
         [Header(Keyword.References)]
         [SerializeField] private Rigidbody body;
-        
-        [Header(Keyword.Values)]
+
+        [Header(Keyword.Values)] 
         [SerializeField, Min(0f)] private float speed;
         [SerializeField, Min(0f)] private float movementRange;
+        [SerializeField] private float respawnOffset;
 
 
         private Transform BodyTransform => body.transform;
+        private Vector3 SpawnPoint => new Vector3(respawnOffset, BodyTransform.position.y, BodyTransform.position.z);
         private float DeltaTime => m_IgnoreTimeScale ? Time.unscaledDeltaTime : Time.deltaTime;
         
         
@@ -47,6 +49,11 @@ namespace SpaceShipSystem
             body.velocity = Vector3.zero;
         }
 
+        private void OnGameStarted(Game.EventResponse response)
+        {
+            MoveToSpawnPoint();
+        }
+        
         private void OnGamePaused(Game.EventResponse response)
         {
             m_IgnoreTimeScale = response.allowPlayerToPlay;
@@ -72,12 +79,18 @@ namespace SpaceShipSystem
             }
         }
 
+        private void MoveToSpawnPoint()
+        {
+            BodyTransform.position = SpawnPoint;
+        }
+
         private void AddListeners()
         {
             if (MainBehaviour)
             {
                 MainBehaviour.OnPerformMove += OnPerformMove;
                 MainBehaviour.OnCancelMove += OnCancelMove;
+                Game.OnStarted += OnGameStarted;
                 Game.OnPaused += OnGamePaused;
                 Game.OnResumed += OnGameResumed;
             }
@@ -89,6 +102,7 @@ namespace SpaceShipSystem
             {
                 MainBehaviour.OnPerformMove -= OnPerformMove;
                 MainBehaviour.OnCancelMove -= OnCancelMove;
+                Game.OnStarted -= OnGameStarted;
                 Game.OnPaused -= OnGamePaused;
                 Game.OnResumed -= OnGameResumed;
             }

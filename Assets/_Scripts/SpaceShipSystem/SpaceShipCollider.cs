@@ -52,6 +52,11 @@ namespace SpaceShipSystem
             Collider.enabled = true;
         }
 
+        private void OnGameStarted(Game.EventResponse response)
+        {
+            Collider.enabled = true;
+        }
+
 
         private void AddListeners()
         {
@@ -59,6 +64,8 @@ namespace SpaceShipSystem
             {
                 MainBehaviour.OnRespawn += OnRespawn;
             }
+
+            Game.OnStarted += OnGameStarted;
         }
 
         private void RemoveListeners()
@@ -67,6 +74,8 @@ namespace SpaceShipSystem
             {
                 MainBehaviour.OnRespawn -= OnRespawn;
             }
+            
+            Game.OnStarted -= OnGameStarted;
         }
     }
 }

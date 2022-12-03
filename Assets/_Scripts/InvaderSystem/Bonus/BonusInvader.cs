@@ -1,4 +1,5 @@
 using System;
+using MainMenuSystem;
 using UnityEngine.Events;
 using Utils.ModularBehaviour;
 using Utils.PoolSystem;
@@ -39,6 +40,11 @@ namespace InvaderSystem
             Game.Pause();
         }
         
+        private void OnMainMenuLoaded(MainMenu.EventResponse response)
+        {
+            Release();
+        }
+        
 
         public virtual void TakeDamage()
         {
@@ -61,6 +67,7 @@ namespace InvaderSystem
             OnShotBySpaceShip += OnShotBySpaceShip_Internal;
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
             OnDied += OnDied_Internal;
+            MainMenu.OnLoaded += OnMainMenuLoaded;
         }
 
         protected virtual void RemoveListeners()
@@ -68,6 +75,7 @@ namespace InvaderSystem
             OnShotBySpaceShip -= OnShotBySpaceShip_Internal;
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
             OnDied -= OnDied_Internal;
+            MainMenu.OnLoaded -= OnMainMenuLoaded;
         }
         
         
