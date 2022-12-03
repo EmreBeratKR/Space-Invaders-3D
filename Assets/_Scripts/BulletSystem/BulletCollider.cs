@@ -7,6 +7,8 @@ namespace BulletSystem
     {
         public void Release()
         {
+            if (!MainBehaviour) return;
+            
             MainBehaviour.Release();
         }
 
