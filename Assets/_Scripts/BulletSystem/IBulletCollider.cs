@@ -2,7 +2,7 @@ using Utils;
 
 namespace BulletSystem
 {
-    public interface IBulletCollider : IReleasable
+    public interface IBulletCollider : IReleasable, IHittableByBullet
     {
         
     }

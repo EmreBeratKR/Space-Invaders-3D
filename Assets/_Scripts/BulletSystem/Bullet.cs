@@ -32,19 +32,14 @@ namespace BulletSystem
         {
             Release();
         }
-        
-
-        protected virtual void OnHitByBullet()
-        {
-            Release();
-        }
 
 
         private void CheckBulletHit(Collider other)
         {
-            if (!other.TryGetComponent(out IBulletCollider bulletCollider)) return;
+            if (!other.TryGetComponent(out IHittableByBullet hittable)) return;
             
-            OnHitByBullet();
+            hittable.Hit();
+            Release();
         }
 
 

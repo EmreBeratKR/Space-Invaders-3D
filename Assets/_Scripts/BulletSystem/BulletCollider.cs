@@ -9,5 +9,10 @@ namespace BulletSystem
         {
             MainBehaviour.Release();
         }
+
+        public void Hit()
+        {
+            Release();
+        }
     }
 }

@@ -92,6 +92,7 @@ MonoBehaviour:
   body: {fileID: 750220369052453245}
   speed: 25
   movementRange: 43.5
+  respawnOffset: -32
 --- !u!1 &1025779250
 GameObject:
   m_ObjectHideFlags: 0
