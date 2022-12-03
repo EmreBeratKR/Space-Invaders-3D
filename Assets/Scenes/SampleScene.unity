@@ -2994,7 +2994,7 @@ MonoBehaviour:
   invasionSpeed: 0.75
   ufoSpawnIntervalRange:
     min: 20
-    max: 40
+    max: 30
 --- !u!1 &1107344035
 GameObject:
   m_ObjectHideFlags: 0
