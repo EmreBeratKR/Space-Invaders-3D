@@ -2989,7 +2989,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxInvasionSpeed: 50
+  maxInvasionSpeed: 55
   minInvasionSpeed: 1
   invasionSpeed: 0.75
   ufoSpawnIntervalRange:

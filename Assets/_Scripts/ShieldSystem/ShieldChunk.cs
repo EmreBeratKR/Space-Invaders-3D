@@ -1,11 +1,12 @@
 using BulletSystem;
+using InvaderSystem;
 using Utils.ModularBehaviour;
 
 namespace ShieldSystem
 {
-    public class ShieldChunk : BehaviourModule<Shield>, IHittableByBullet
+    public class ShieldChunk : BehaviourModule<Shield>, ITriggerEnterByBullet, ITriggerEnterByInvader
     {
-        public void Hit()
+        public void TriggerEnter()
         {
             Disable();
         }

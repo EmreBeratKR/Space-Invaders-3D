@@ -12,7 +12,7 @@ namespace BulletSystem
             MainBehaviour.Release();
         }
 
-        public void Hit()
+        public void TriggerEnter()
         {
             Release();
         }

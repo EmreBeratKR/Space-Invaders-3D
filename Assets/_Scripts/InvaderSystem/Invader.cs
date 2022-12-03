@@ -45,6 +45,11 @@ namespace InvaderSystem
             RemoveListeners();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            CheckInvaderHit(other);
+        }
+
 
         private void OnShotBySpaceShip_Internal(EventResponse response)
         {
@@ -113,6 +118,13 @@ namespace InvaderSystem
             if (!isHit) return null;
 
             return hitInfo.collider.TryGetComponent(out InvaderCollider invaderCollider) ? (Invader) invaderCollider : null;
+        }
+
+        private void CheckInvaderHit(Collider other)
+        {
+            if (!other.TryGetComponent(out ITriggerEnterByInvader trigger)) return;
+            
+            trigger.TriggerEnter();
         }
         
         private void Die()

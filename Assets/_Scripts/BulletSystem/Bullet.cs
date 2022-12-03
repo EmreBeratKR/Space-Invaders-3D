@@ -36,9 +36,9 @@ namespace BulletSystem
 
         private void CheckBulletHit(Collider other)
         {
-            if (!other.TryGetComponent(out IHittableByBullet hittable)) return;
+            if (!other.TryGetComponent(out ITriggerEnterByBullet trigger)) return;
             
-            hittable.Hit();
+            trigger.TriggerEnter();
             Release();
         }
 
