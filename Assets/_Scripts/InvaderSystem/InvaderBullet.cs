@@ -1,16 +1,11 @@
 using BulletSystem;
 using SpaceShipSystem;
 using UnityEngine;
-using Utils;
 
 namespace InvaderSystem
 {
     public class InvaderBullet : Bullet<Invader>
     {
-        [Header(Keyword.References)]
-        [SerializeField] private Rigidbody body;
-        
-        
         private Invader m_Shooter;
 
 
@@ -29,8 +24,8 @@ namespace InvaderSystem
             bodyTransform.up = direction;
             body.velocity = direction * speed;
         }
-        
-        
+
+
         private void CheckSpaceShipHit(Collider other)
         {
             if (!other.TryGetComponent(out SpaceShipCollider spaceShipCollider)) return;

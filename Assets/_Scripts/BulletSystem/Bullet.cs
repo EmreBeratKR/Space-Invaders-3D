@@ -1,5 +1,6 @@
 using MainMenuSystem;
 using UnityEngine;
+using Utils;
 using Utils.ModularBehaviour;
 using Utils.PoolSystem;
 
@@ -8,6 +9,11 @@ namespace BulletSystem
     public abstract class Bullet<T> : PoolableBehaviour<Bullet<T>>, IMainBehaviour
         where T : IMainBehaviour
     {
+        [Header(Keyword.References)]
+        [SerializeField] protected Rigidbody body;
+        [SerializeField] private BulletAnimator animator;
+        
+        
         public abstract void Shoot(T shooter, Vector3 position, Vector3 direction, float speed);
 
 
@@ -34,6 +40,23 @@ namespace BulletSystem
         }
 
 
+        public virtual void OnBlast()
+        {
+            Stop();
+            
+            animator.PlayBlast(() =>
+            {
+                Release();
+            });
+        }
+
+
+        protected void Stop()
+        {
+            body.velocity = Vector3.zero;
+        }
+        
+        
         private void CheckBulletHit(Collider other)
         {
             if (!other.TryGetComponent(out ITriggerEnterByBullet trigger)) return;

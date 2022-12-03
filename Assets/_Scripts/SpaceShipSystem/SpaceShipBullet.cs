@@ -1,16 +1,11 @@
 using BulletSystem;
 using InvaderSystem;
 using UnityEngine;
-using Utils;
 
 namespace SpaceShipSystem
 {
     public class SpaceShipBullet : Bullet<SpaceShip>
     {
-        [Header(Keyword.References)]
-        [SerializeField] private Rigidbody body;
-
-
         private SpaceShip m_Shooter;
 
 
