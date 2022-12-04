@@ -1,4 +1,3 @@
-using System;
 using ScoreSystem;
 using UnityEngine;
 using Utils;
@@ -18,7 +17,7 @@ namespace SpaceShipSystem
 
         private Vector3 MuzzlePosition => muzzleTransform.position;
         private Vector3 ShootDirection => muzzleTransform.up;
-        private bool CanShoot => !bulletSpawner.HasActiveBullet;
+        private bool CanShoot => !bulletSpawner.HasActiveBullet && !Game.IsPaused;
         
 
         private void OnEnable()

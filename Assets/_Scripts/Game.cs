@@ -17,6 +17,9 @@ public static class Game
     public static UnityAction<EventResponse> OnStartedNextWave;
 
 
+    public static bool IsPaused => Time.timeScale == 0f;
+    
+
     [InitializeOnEnterPlayMode]
     private static void InitializeForEnterPlayMode()
     {
