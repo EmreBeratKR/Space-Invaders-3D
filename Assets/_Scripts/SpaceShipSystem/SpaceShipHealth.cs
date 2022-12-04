@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Utils;
 using Utils.ModularBehaviour;
@@ -31,7 +32,13 @@ namespace SpaceShipSystem
         
 
         private int m_CurrentHealth;
-        
+
+
+        private void Start()
+        {
+            FullHealth();
+        }
+
 
         private void OnEnable()
         {

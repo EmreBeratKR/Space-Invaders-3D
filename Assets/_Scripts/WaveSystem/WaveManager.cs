@@ -6,7 +6,7 @@ namespace WaveSystem
 {
     public static class WaveManager
     {
-        private const int DefaultWaveNumber = 1;
+        public const int DefaultWaveNumber = 1;
         
         
         public static int WaveSpawnOffset => WaveSpawnTable[WaveIndex];

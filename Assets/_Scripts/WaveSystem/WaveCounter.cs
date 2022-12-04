@@ -10,6 +10,12 @@ namespace WaveSystem
         [SerializeField] private MeshNumber waveCounter;
 
 
+        private void Start()
+        {
+            SetToDefault();
+        }
+
+
         private void OnEnable()
         {
             AddListeners();
@@ -31,6 +37,11 @@ namespace WaveSystem
         private void UpdateWaveCounter(int newWaveNumber)
         {
             waveCounter.Set(newWaveNumber);
+        }
+
+        private void SetToDefault()
+        {
+            UpdateWaveCounter(WaveManager.DefaultWaveNumber);
         }
 
         private void AddListeners()
