@@ -51,6 +51,7 @@ namespace InvaderSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnDied += OnDied;
+                MainBehaviour.OnDieAnimationComplete += OnDieAnimationComplete;
             }
         }
 
@@ -59,6 +60,7 @@ namespace InvaderSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnDied -= OnDied;
+                MainBehaviour.OnDieAnimationComplete -= OnDieAnimationComplete;
             }
         }
     }

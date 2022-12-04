@@ -1,5 +1,6 @@
 using System;
 using MainMenuSystem;
+using ScoreSystem;
 using UnityEngine.Events;
 using Utils.ModularBehaviour;
 using Utils.PoolSystem;
@@ -70,7 +71,10 @@ namespace InvaderSystem
 
         private void Die()
         {
-            OnDied?.Invoke(new EventResponse());
+            OnDied?.Invoke(new EventResponse()
+            {
+                scoreEarned = ScoreManager.CurrentUfoScore
+            });
         }
         
         protected virtual void AddListeners()
@@ -100,7 +104,7 @@ namespace InvaderSystem
         [Serializable]
         public struct EventResponse
         {
-            
+            public int scoreEarned;
         }
     }
 }

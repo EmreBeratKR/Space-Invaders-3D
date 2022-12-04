@@ -14,12 +14,12 @@ namespace MeshNumberSystem
         private int Index => transform.GetSiblingIndex();
         
 
-        private void OnEnable()
+        private void Awake()
         {
             AddListeners();
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             RemoveListeners();
         }
