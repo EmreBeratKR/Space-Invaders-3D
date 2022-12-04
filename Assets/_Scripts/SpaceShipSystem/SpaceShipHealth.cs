@@ -10,6 +10,26 @@ namespace SpaceShipSystem
         [SerializeField] private int maxHealth;
 
 
+        private int CurrentHealth
+        {
+            get => m_CurrentHealth;
+            set
+            {
+                var oldHealth = m_CurrentHealth;
+                m_CurrentHealth = value;
+                var newHealth = m_CurrentHealth;
+
+                var response = new SpaceShip.EventResponse()
+                {
+                    oldHealth = oldHealth,
+                    newHealth = newHealth
+                };
+            
+                MainBehaviour.OnHealthChanged?.Invoke(response);
+            }
+        }
+        
+
         private int m_CurrentHealth;
         
 
@@ -39,36 +59,28 @@ namespace SpaceShipSystem
         {
             FullHealth();
         }
+        
+        private void OnStartNextWave(Game.EventResponse response)
+        {
+            Heal(1);
+        }
 
         
         private void FullHealth()
         {
-            m_CurrentHealth = maxHealth;
-
-            var response = new SpaceShip.EventResponse()
-            {
-                oldHealth = maxHealth,
-                newHealth = maxHealth
-            };
-            
-            MainBehaviour.OnHealthChanged?.Invoke(response);
+            CurrentHealth = maxHealth;
         }
 
         private void TakeDamage(int damage)
         {
             Game.Pause();
             
-            var oldHealth = m_CurrentHealth;
-            m_CurrentHealth = Mathf.Max(0, m_CurrentHealth - damage);
-            var newHealth = m_CurrentHealth;
+            CurrentHealth = Mathf.Max(m_CurrentHealth - damage, 0);
+        }
 
-            var response = new SpaceShip.EventResponse()
-            {
-                oldHealth = oldHealth,
-                newHealth = newHealth
-            };
-            
-            MainBehaviour.OnHealthChanged?.Invoke(response);
+        private void Heal(int healAmount)
+        {
+            CurrentHealth = Mathf.Min(m_CurrentHealth + healAmount, maxHealth);
         }
 
         private bool TryRespawn()
@@ -94,6 +106,7 @@ namespace SpaceShipSystem
             }
 
             Game.OnStarted += OnGameStarted;
+            Game.OnStartedNextWave += OnStartNextWave;
         }
 
         private void RemoveListeners()
@@ -105,6 +118,7 @@ namespace SpaceShipSystem
             }
             
             Game.OnStarted -= OnGameStarted;
+            Game.OnStartedNextWave -= OnStartNextWave;
         }
     }
 }

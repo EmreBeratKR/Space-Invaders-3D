@@ -39,6 +39,11 @@ namespace BulletSystem
             Release();
         }
 
+        private void OnStartNextWave(Game.EventResponse response)
+        {
+            Release();
+        }
+
 
         public override void OnAfterInitialized()
         {
@@ -74,11 +79,15 @@ namespace BulletSystem
         private void AddListeners()
         {
             MainMenu.OnLoaded += OnMainMenuLoaded;
+
+            Game.OnStartedNextWave += OnStartNextWave;
         }
 
         private void RemoveListeners()
         {
             MainMenu.OnLoaded -= OnMainMenuLoaded;
+            
+            Game.OnStartedNextWave -= OnStartNextWave;
         }
     }
 }

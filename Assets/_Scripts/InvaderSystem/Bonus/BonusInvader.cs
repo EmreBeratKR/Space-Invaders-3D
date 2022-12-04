@@ -44,7 +44,18 @@ namespace InvaderSystem
         {
             Release();
         }
-        
+
+        private void OnWaveCleared(Game.EventResponse response)
+        {
+            Release();
+        }
+
+
+        public override void Release()
+        {
+            StopAllCoroutines();
+            base.Release();
+        }
 
         public virtual void TakeDamage()
         {
@@ -67,7 +78,10 @@ namespace InvaderSystem
             OnShotBySpaceShip += OnShotBySpaceShip_Internal;
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
             OnDied += OnDied_Internal;
+            
             MainMenu.OnLoaded += OnMainMenuLoaded;
+
+            Game.OnWaveCleared += OnWaveCleared;
         }
 
         protected virtual void RemoveListeners()
@@ -75,7 +89,10 @@ namespace InvaderSystem
             OnShotBySpaceShip -= OnShotBySpaceShip_Internal;
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
             OnDied -= OnDied_Internal;
+            
             MainMenu.OnLoaded -= OnMainMenuLoaded;
+            
+            Game.OnWaveCleared -= OnWaveCleared;
         }
         
         

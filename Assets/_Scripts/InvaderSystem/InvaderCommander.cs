@@ -59,6 +59,11 @@ namespace InvaderSystem
         }
 
 
+        private void OnWaveCleared(Game.EventResponse response)
+        {
+            DeInitialize();
+        }
+        
         private void OnMainMenuLoaded(MainMenu.EventResponse response)
         {
             DeInitialize();
@@ -79,19 +84,38 @@ namespace InvaderSystem
         {
             UpdateInvasionSpeed();
         }
+
+        public void OnInvaderReleased(Invader.EventResponse response)
+        {
+            CheckIfAllInvadersDied();
+        }
         
 
         private void Initialize()
         {
             CacheStartInvaderCount();
-            CommandShoot();
-            StartInvasion();
-            CommandUfoSpawn();
+            
+            Wait.ForSecondsRealtime(1f, () =>
+            {
+                CommandShoot();
+                StartInvasion();
+                CommandUfoSpawn();
+            });
         }
 
         private void DeInitialize()
         {
             StopAllCoroutines();
+        }
+
+        private void CheckIfAllInvadersDied()
+        {
+            var invaders = Invaders;
+            var invaderCount = invaders.Length;
+            
+            if (invaderCount > 0) return;
+            
+            Game.RaiseWaveCleared();
         }
         
         private void CacheStartInvaderCount()
@@ -209,6 +233,8 @@ namespace InvaderSystem
                 mainSpawner.OnSpawnComplete += OnInvaderSpawnComplete;
             }
 
+            Game.OnWaveCleared += OnWaveCleared;
+            
             MainMenu.OnLoaded += OnMainMenuLoaded;
         }
 
@@ -218,6 +244,8 @@ namespace InvaderSystem
             {
                 mainSpawner.OnSpawnComplete -= OnInvaderSpawnComplete;
             }
+            
+            Game.OnWaveCleared -= OnWaveCleared;
             
             MainMenu.OnLoaded -= OnMainMenuLoaded;
         }

@@ -31,6 +31,11 @@ namespace InvaderSystem
             Enable();
         }
         
+        private void OnStartNextWave(Game.EventResponse response)
+        {
+            Enable();
+        }
+        
 
         private void CheckInvaderHit(Collider other)
         {
@@ -56,11 +61,13 @@ namespace InvaderSystem
         private void AddListeners()
         {
             Game.OnStarted += OnGameStarted;
+            Game.OnStartedNextWave += OnStartNextWave;
         }
 
         private void RemoveListeners()
         {
             Game.OnStarted -= OnGameStarted;
+            Game.OnStartedNextWave -= OnStartNextWave;
         }
     }
 }

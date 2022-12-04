@@ -71,6 +71,11 @@ namespace InvaderSystem
         {
             SpawnAll();
         }
+
+        private void OnStartNextWave(Game.EventResponse response)
+        {
+            SpawnAll();
+        }
         
         
         public Vector3 EvaluateGridPosition(Vector2Int gridPosition)
@@ -103,11 +108,13 @@ namespace InvaderSystem
         private void AddListeners()
         {
             Game.OnStarted += OnGameStarted;
+            Game.OnStartedNextWave += OnStartNextWave;
         }
 
         private void RemoveListeners()
         {
             Game.OnStarted -= OnGameStarted;
+            Game.OnStartedNextWave -= OnStartNextWave;
         }
         
         

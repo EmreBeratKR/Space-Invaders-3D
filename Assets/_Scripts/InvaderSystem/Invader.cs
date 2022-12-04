@@ -64,8 +64,9 @@ namespace InvaderSystem
 
         private void OnDieAnimationComplete_Internal(EventResponse response)
         {
-            Commander.OnInvaderDied(new EventResponse());
+            Commander.OnInvaderDied(response);
             Release();
+            Commander.OnInvaderReleased(response);
         }
 
         private void OnReachInvasionBorder_Internal(EventResponse response)

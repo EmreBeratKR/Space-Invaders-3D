@@ -28,6 +28,16 @@ namespace SpaceShipSystem
             Enable();
         }
         
+        private void OnWaveCleared(Game.EventResponse response)
+        {
+            Disable();
+        }
+        
+        private void OnStartNextWave(Game.EventResponse response)
+        {
+            Enable();
+        }
+        
         private void OnShotByInvader(SpaceShip.EventResponse response)
         {
             Disable();
@@ -99,6 +109,8 @@ namespace SpaceShipSystem
         private void AddListeners()
         {
             Game.OnStarted += OnGameStart;
+            Game.OnWaveCleared += OnWaveCleared;
+            Game.OnStartedNextWave += OnStartNextWave;
 
             if (MainBehaviour)
             {
@@ -110,6 +122,8 @@ namespace SpaceShipSystem
         private void RemoveListeners()
         {
             Game.OnStarted -= OnGameStart;
+            Game.OnWaveCleared -= OnWaveCleared;
+            Game.OnStartedNextWave -= OnStartNextWave;
             
             if (MainBehaviour)
             {

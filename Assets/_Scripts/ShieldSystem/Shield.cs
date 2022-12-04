@@ -39,6 +39,11 @@ namespace ShieldSystem
             RestoreChunks();
         }
         
+        private void OnStartNextWave(Game.EventResponse response)
+        {
+            RestoreChunks();
+        }
+        
 
         private void RestoreChunks()
         {
@@ -51,11 +56,13 @@ namespace ShieldSystem
         private void AddListeners()
         {
             Game.OnStarted += OnGameStarted;
+            Game.OnStartedNextWave += OnStartNextWave;
         }
 
         private void RemoveListeners()
         {
-            Game.OnStarted -= OnGameStarted; 
+            Game.OnStarted -= OnGameStarted;
+            Game.OnStartedNextWave -= OnStartNextWave;
         }
     }
 }

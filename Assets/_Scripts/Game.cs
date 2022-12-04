@@ -3,6 +3,7 @@ using ScoreSystem;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using Utils;
 
 public static class Game
 {
@@ -11,6 +12,8 @@ public static class Game
     public static UnityAction<EventResponse> OnPaused;
     public static UnityAction<EventResponse> OnResumed;
     public static UnityAction<EventResponse> OnGameOver;
+    public static UnityAction<EventResponse> OnWaveCleared;
+    public static UnityAction<EventResponse> OnStartedNextWave;
 
 
     [InitializeOnEnterPlayMode]
@@ -21,6 +24,8 @@ public static class Game
         OnPaused = null;
         OnResumed = null;
         OnGameOver = null;
+        OnWaveCleared = null;
+        OnStartedNextWave = null;
     }
 
 
@@ -60,7 +65,18 @@ public static class Game
             gameOverReason = reason
         });
     }
+
+    public static void RaiseWaveCleared()
+    {
+        Pause();
+        OnWaveCleared?.Invoke(new EventResponse());
+    }
     
+    public static void StartNextWave()
+    {
+        Resume();
+        OnStartedNextWave?.Invoke(new EventResponse());
+    }
     
     
     

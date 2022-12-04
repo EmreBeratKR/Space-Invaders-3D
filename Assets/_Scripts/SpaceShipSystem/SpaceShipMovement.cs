@@ -54,6 +54,11 @@ namespace SpaceShipSystem
             MoveToSpawnPoint();
         }
         
+        private void OnStartNextWave(Game.EventResponse response)
+        {
+            MoveToSpawnPoint();
+        }
+        
         private void OnGamePaused(Game.EventResponse response)
         {
             m_IgnoreTimeScale = response.allowPlayerToPlay;
@@ -101,6 +106,7 @@ namespace SpaceShipSystem
             Game.OnPaused += OnGamePaused;
             Game.OnResumed += OnGameResumed;
             Game.OnGameOver += OnGameOver;
+            Game.OnStartedNextWave += OnStartNextWave;
         }
 
         private void RemoveListeners()
@@ -115,6 +121,7 @@ namespace SpaceShipSystem
             Game.OnPaused -= OnGamePaused;
             Game.OnResumed -= OnGameResumed;
             Game.OnGameOver -= OnGameOver;
+            Game.OnStartedNextWave -= OnStartNextWave;
         }
     }
 }
