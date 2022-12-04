@@ -79,8 +79,8 @@ namespace InvaderSystem
 
         public void OnInvaderReachInvasionBorder(Invader.EventResponse response)
         {
-            InvertDirection();
             CommandInvadeLower();
+            InvertDirection();
         }
 
         public void OnInvaderDied(Invader.EventResponse response)
