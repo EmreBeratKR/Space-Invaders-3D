@@ -1,7 +1,9 @@
 using System;
 using MainMenuSystem;
+using ScoreSystem;
 using UnityEngine;
 using UnityEngine.Events;
+using Utils;
 using Utils.ModularBehaviour;
 using Utils.PoolSystem;
 
@@ -9,6 +11,10 @@ namespace InvaderSystem
 {
     public abstract class Invader : PoolableBehaviour<Invader>, IMainBehaviour, IInvader
     {
+        [Header(Keyword.Values)]
+        [SerializeField, Min(0f)] private int score;
+        
+        
         public UnityAction<EventResponse> OnInitialized;
         public UnityAction<EventResponse> OnShotBySpaceShip;
         public UnityAction<EventResponse> OnDied;
@@ -69,6 +75,7 @@ namespace InvaderSystem
 
         private void OnDied_Internal(EventResponse response)
         {
+            ScoreManager.EarnScore(score);
             Game.Pause();
         }
 

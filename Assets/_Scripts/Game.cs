@@ -1,4 +1,5 @@
 using System;
+using ScoreSystem;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,6 +26,7 @@ public static class Game
 
     public static void Start()
     {
+        ScoreManager.ResetScore();
         OnStarted?.Invoke(new EventResponse());
     }
 
@@ -50,6 +52,8 @@ public static class Game
     
     public static void RaiseGameOver(GameOverReason reason)
     {
+        ScoreManager.TryUpdateHighScore();
+        
         OnGameOver?.Invoke(new EventResponse()
         {
             gameOverReason = reason
