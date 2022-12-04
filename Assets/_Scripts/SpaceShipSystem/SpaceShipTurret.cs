@@ -1,3 +1,5 @@
+using System;
+using ScoreSystem;
 using UnityEngine;
 using Utils;
 using Utils.ModularBehaviour;
@@ -42,6 +44,8 @@ namespace SpaceShipSystem
             
             var newBullet = bulletSpawner.Spawn(MuzzlePosition);
             newBullet.Shoot(MainBehaviour, MuzzlePosition, ShootDirection, shootSpeed);
+            
+            ScoreManager.IncrementUfoScoreTable();
         }
         
         private void AddListeners()

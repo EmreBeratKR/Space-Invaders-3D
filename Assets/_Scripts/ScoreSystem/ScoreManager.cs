@@ -29,13 +29,25 @@ namespace ScoreSystem
             get => PlayerPrefs.GetInt(HighScoreSaveKey, DefaultHighScore);
             private set => PlayerPrefs.SetInt(HighScoreSaveKey, value);
         }
-    
-        
+
+        public static int CurrentUfoScore => UfoScoreTable[ms_UfoScoreTableIndex];
+
+
+        private static readonly int[] UfoScoreTable = new int[]
+        {
+            100, 50, 50, 100, 150, 100, 100, 50, 300, 100, 100, 100, 50, 150, 100
+        };
+
+
+        private static int ms_UfoScoreTableIndex;
+
+
         [InitializeOnEnterPlayMode]
         private static void InitializeForEnterPlayMode()
         {
             OnScoreChanged = null;
             OnHighScoreChanged = null;
+            ms_UfoScoreTableIndex = 0;
         }
         
     
@@ -45,19 +57,6 @@ namespace ScoreSystem
             var newScore = oldScore + score;
             Score = newScore;
 
-            OnScoreChanged?.Invoke(new EventResponse()
-            {
-                oldScore = oldScore,
-                newScore = newScore
-            });
-        }
-
-        public static void ResetScore()
-        {
-            var oldScore = Score;
-            var newScore = DefaultScore;
-            Score = newScore;
-        
             OnScoreChanged?.Invoke(new EventResponse()
             {
                 oldScore = oldScore,
@@ -81,8 +80,38 @@ namespace ScoreSystem
 
             return true;
         }
+
+        public static void OnGameStarted(Game.EventResponse response)
+        {
+            ResetScore();
+            ResetUfoScoreTable();
+        }
+
+        public static void IncrementUfoScoreTable()
+        {
+            ms_UfoScoreTableIndex = (ms_UfoScoreTableIndex + 1) % UfoScoreTable.Length;
+        }
     
     
+        private static void ResetScore()
+        {
+            var oldScore = Score;
+            var newScore = DefaultScore;
+            Score = newScore;
+        
+            OnScoreChanged?.Invoke(new EventResponse()
+            {
+                oldScore = oldScore,
+                newScore = newScore
+            });
+        }
+        
+        private static void ResetUfoScoreTable()
+        {
+            ms_UfoScoreTableIndex = 0;
+        }
+        
+        
     
     
         [Serializable]

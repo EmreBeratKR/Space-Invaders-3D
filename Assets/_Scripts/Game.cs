@@ -26,8 +26,9 @@ public static class Game
 
     public static void Start()
     {
-        ScoreManager.ResetScore();
-        OnStarted?.Invoke(new EventResponse());
+        var response = new EventResponse();
+        ScoreManager.OnGameStarted(response);
+        OnStarted?.Invoke(response);
     }
 
     public static void Load()

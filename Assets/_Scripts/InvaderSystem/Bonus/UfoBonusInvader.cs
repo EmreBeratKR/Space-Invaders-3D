@@ -1,4 +1,5 @@
 using System.Collections;
+using ScoreSystem;
 using UnityEngine;
 using Utils;
 
@@ -8,8 +9,11 @@ namespace InvaderSystem
     {
         [Header(Keyword.Values)]
         [SerializeField, Min(0f)] private float moveSpeed;
-        [SerializeField] private float lifetime;
+        [SerializeField, Min(0f)] private float lifetime;
 
+
+        private int CurrentScore => ScoreManager.CurrentUfoScore;
+        
 
         private bool m_IsDead;
         
@@ -30,6 +34,7 @@ namespace InvaderSystem
         private void OnDied_Internal(EventResponse response)
         {
             m_IsDead = true;
+            ScoreManager.EarnScore(CurrentScore);
         }
 
 
