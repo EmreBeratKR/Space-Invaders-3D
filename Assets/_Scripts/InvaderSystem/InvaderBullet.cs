@@ -6,6 +6,26 @@ namespace InvaderSystem
 {
     public class InvaderBullet : Bullet<Invader>
     {
+        private InvaderBulletCollider Collider
+        {
+            get
+            {
+                if (!m_Collider)
+                {
+                    m_Collider = GetComponentInChildren<InvaderBulletCollider>(true);
+                }
+
+                return m_Collider;
+            }
+        }
+        
+        
+        private bool CanHarmSpaceShip => transform.position.y > SpaceShipBase.SafeAreaHeight;
+        
+        
+        private InvaderBulletCollider m_Collider;
+        
+        
         private Invader m_Shooter;
 
 
@@ -14,8 +34,17 @@ namespace InvaderSystem
             base.OnTriggerEnter(other);
             CheckSpaceShipHit(other);
         }
-        
-        
+
+
+        public override void OnAfterInitialized()
+        {
+            base.OnAfterInitialized();
+            
+            if (CanHarmSpaceShip) Collider.Enable();
+            
+            else Collider.Disable();
+        }
+
         public override void Shoot(Invader shooter, Vector3 position, Vector3 direction, float speed)
         {
             m_Shooter = shooter;
