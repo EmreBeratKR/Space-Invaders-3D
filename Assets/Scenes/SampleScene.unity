@@ -432,6 +432,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9080184938861734422, guid: 88ebcf1b6e00c0f428fe95e721b1a9c1, type: 3}
   m_PrefabInstance: {fileID: 67267977}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &101058094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+  m_PrefabInstance: {fileID: 6159608234531319731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &106688389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3138,6 +3143,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8098229124115533080, guid: 1f6f13e5bbf7aa247ac917f329588fb4, type: 3}
   m_PrefabInstance: {fileID: 1024262840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1041255689
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1127615459}
+    m_Modifications:
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261662, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_Name
+      value: Invasion Step Sound Pack (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+--- !u!4 &1041255690 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+  m_PrefabInstance: {fileID: 1041255689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1050304855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 781874752755964126, guid: 84c9d5a29aea35d4c8b1c34f24f28f03, type: 3}
@@ -3306,6 +3373,7 @@ Transform:
   m_Children:
   - {fileID: 1799752982}
   - {fileID: 927339197}
+  - {fileID: 1123102403}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3321,6 +3389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3aa9c97d3044b04b59747505834c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invasionSound: {fileID: 1127615461}
   mainSpawner: {fileID: 1799752983}
   bonusMainSpawner: {fileID: 927339198}
   invadeLowerSpeed: 3.5
@@ -3331,34 +3400,43 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 0.061560154
+      outSlope: 0.061560154
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.119047895
     - serializedVersion: 3
-      time: 0.83591795
-      value: 0.21200787
-      inSlope: 0.5160317
-      outSlope: 0.5160317
+      time: 0.8977078
+      value: 0.30591246
+      inSlope: 0.73550206
+      outSlope: 0.73550206
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.07069448
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9832615
+      value: 0.5965693
+      inSlope: 5.8076825
+      outSlope: 5.8076825
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.1612537
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 4.4749494
-      outSlope: 4.4749494
-      tangentMode: 0
+      inSlope: 24.102
+      outSlope: 24.102
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.13361162
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxInvasionSpeed: 55
+  maxInvasionSpeed: 60
   minInvasionSpeed: 1
   invasionSpeed: 0.75
   ufoSpawnIntervalRange:
@@ -3397,6 +3475,131 @@ Transform:
   m_Father: {fileID: 44554366}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1123102402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123102403}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123102403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123102402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1127615459}
+  m_Father: {fileID: 1082054639}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1127615458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127615459}
+  - component: {fileID: 1127615461}
+  m_Layer: 0
+  m_Name: Invasion Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1127615459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127615458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 101058094}
+  - {fileID: 1936935774}
+  - {fileID: 1041255690}
+  - {fileID: 1864975513}
+  m_Father: {fileID: 1123102403}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127615461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127615458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4398a674e0f4c9abfeb98abaec0b0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempoRange:
+    min: 1
+    max: 15
+  tempoCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.62483555
+      outSlope: 0.62483555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.08620645
+    - serializedVersion: 3
+      time: 0.8977078
+      value: 0.30591246
+      inSlope: 0.73550206
+      outSlope: 0.73550206
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07069448
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9832615
+      value: 0.5965693
+      inSlope: 5.8076825
+      outSlope: 5.8076825
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.1612537
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 24.102
+      outSlope: 24.102
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1134989382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6167,6 +6370,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 462790277196778356, guid: 6e00a6968e7fab94ab0648ce3460aa41, type: 3}
   m_PrefabInstance: {fileID: 1852444834}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1864975512
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1127615459}
+    m_Modifications:
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261662, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_Name
+      value: Invasion Step Sound Pack (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+--- !u!4 &1864975513 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+  m_PrefabInstance: {fileID: 1864975512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1865733337
 GameObject:
   m_ObjectHideFlags: 0
@@ -6547,6 +6812,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8895704785726973273, guid: 52513d6ce3f71bd4f83e01c939639369, type: 3}
   m_PrefabInstance: {fileID: 1933841744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1936935773
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1127615459}
+    m_Modifications:
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261662, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_Name
+      value: Invasion Step Sound Pack (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+--- !u!4 &1936935774 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+  m_PrefabInstance: {fileID: 1936935773}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1949766529 stripped
 Transform:
@@ -7669,6 +7996,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &6159608234531319731
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1127615459}
+    m_Modifications:
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261661, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159608234430261662, guid: 1356e60b07e48064997cae462d68f886, type: 3}
+      propertyPath: m_Name
+      value: Invasion Step Sound Pack
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1356e60b07e48064997cae462d68f886, type: 3}
 --- !u!1001 &6332517215318452201
 PrefabInstance:
   m_ObjectHideFlags: 0

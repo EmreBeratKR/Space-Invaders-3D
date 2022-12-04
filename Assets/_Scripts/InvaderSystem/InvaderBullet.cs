@@ -54,6 +54,12 @@ namespace InvaderSystem
             body.velocity = direction * speed;
         }
 
+        
+        protected override void OnBulletHit()
+        {
+            Collider.Disable();
+        }
+
 
         private void CheckSpaceShipHit(Collider other)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using MainMenuSystem;
+using SoundSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
@@ -10,7 +11,8 @@ namespace InvaderSystem
 {
     public class InvaderCommander : MonoBehaviour
     {
-        [Header(Keyword.References)]
+        [Header(Keyword.References)] 
+        [SerializeField] private InvasionSound invasionSound;
         [SerializeField] private InvaderMainSpawner mainSpawner;
         [SerializeField] private BonusInvaderMainSpawner bonusMainSpawner;
 
@@ -83,11 +85,12 @@ namespace InvaderSystem
 
         public void OnInvaderDied(Invader.EventResponse response)
         {
-            UpdateInvasionSpeed();
+            
         }
 
         public void OnInvaderReleased(Invader.EventResponse response)
         {
+            UpdateInvasionSpeed();
             CheckIfAllInvadersDied();
         }
         
@@ -207,8 +210,9 @@ namespace InvaderSystem
         {
             var invaders = Invaders;
             var currentInvaderCount = invaders.Length;
-            var invaderExistenceRate = currentInvaderCount / (float) m_StartInvaderCount;
-            m_InvasionSpeed = CalculateInvasionStepSpeed(1f - invaderExistenceRate);
+            var deadInvaderCount = m_StartInvaderCount - currentInvaderCount;
+            var deadInvaderRate = deadInvaderCount / (m_StartInvaderCount - 1f);
+            m_InvasionSpeed = CalculateInvasionStepSpeed(deadInvaderRate);
 
             var response = new Invader.EventResponse()
             {
@@ -219,6 +223,8 @@ namespace InvaderSystem
             {
                 invader.OnInvasionSpeedChanged?.Invoke(response);
             }
+            
+            invasionSound.UpdateTempo(deadInvaderRate);
         }
 
         private float CalculateInvasionStepSpeed(float t)

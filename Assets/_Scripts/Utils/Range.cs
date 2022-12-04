@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Utils
 {
@@ -18,5 +19,16 @@ namespace Utils
 
 
         public float Random => UnityEngine.Random.Range(min, max);
+
+
+        public float Lerp(float t)
+        {
+            return Mathf.Lerp(min, max, t);
+        }
+
+        public float LerpUnclamped(float t)
+        {
+            return Mathf.LerpUnclamped(min, max, t);
+        }
     }
 }

@@ -65,12 +65,18 @@ namespace BulletSystem
         {
             body.velocity = Vector3.zero;
         }
+
+        protected virtual void OnBulletHit()
+        {
+            
+        }
         
         
         private void CheckBulletHit(Collider other)
         {
             if (!other.TryGetComponent(out ITriggerEnterByBullet trigger)) return;
             
+            OnBulletHit();
             trigger.TriggerEnter();
             Release();
         }
