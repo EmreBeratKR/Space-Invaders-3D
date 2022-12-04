@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
+using WaveSystem;
 
 namespace InvaderSystem
 {
@@ -21,6 +22,7 @@ namespace InvaderSystem
 
         private Vector3 BottomLeftPoint => bottomLeftTransform.position;
         private Vector3 TopRightPoint => topRightTransform.position;
+        private Vector3 WaveSpawnOffset => Commander.InvadeLowerMovement * WaveManager.WaveSpawnOffset;
 
 
         private Vector2Int GridSize
@@ -51,7 +53,7 @@ namespace InvaderSystem
                 return m_SubSpawners;
             }
         }
-        
+
 
         private InvaderSubSpawner[] m_SubSpawners;
 
@@ -86,10 +88,10 @@ namespace InvaderSystem
             
             var x = Mathf.Lerp(BottomLeftPoint.x, TopRightPoint.x, tx);
             var y = Mathf.Lerp(BottomLeftPoint.y, TopRightPoint.y, ty);
-            return new Vector3(x, y, 0f);
+            return new Vector3(x, y, 0f) + WaveSpawnOffset;
         }
-
-
+        
+        
         private void SpawnAll()
         {
             foreach (var subSpawner in SubSpawners)

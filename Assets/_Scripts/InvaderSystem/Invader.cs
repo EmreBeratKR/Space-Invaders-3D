@@ -93,7 +93,7 @@ namespace InvaderSystem
 
         public void HandleInvasionStep()
         {
-            var response = new Invader.EventResponse()
+            var response = new EventResponse()
             {
                 invasionMovement = Commander.InvasionMovement
             };

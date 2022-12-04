@@ -28,6 +28,7 @@ namespace InvaderSystem
 
 
         public Vector3 InvasionMovement => m_InvasionDirection * invasionSpeed;
+        public Vector3 InvadeLowerMovement => Vector3.down * invadeLowerSpeed;
         
 
         private Invader[] Invaders => GetComponentsInChildren<Invader>();
@@ -164,7 +165,7 @@ namespace InvaderSystem
             var invaders = Invaders;
             var response = new Invader.EventResponse()
             {
-                invadeLowerMovement = Vector3.down * invadeLowerSpeed
+                invadeLowerMovement = InvadeLowerMovement
             };
 
             foreach (var invader in invaders)

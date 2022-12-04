@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
+using WaveSystem;
 
 public static class Game
 {
@@ -32,6 +33,7 @@ public static class Game
     public static void Start()
     {
         var response = new EventResponse();
+        WaveManager.OnGameStarted(response);
         ScoreManager.OnGameStarted(response);
         OnStarted?.Invoke(response);
     }
@@ -74,8 +76,10 @@ public static class Game
     
     public static void StartNextWave()
     {
+        var response = new EventResponse();
+        WaveManager.OnStartNextWave(response);
         Resume();
-        OnStartedNextWave?.Invoke(new EventResponse());
+        OnStartedNextWave?.Invoke(response);
     }
     
     

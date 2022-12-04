@@ -7,7 +7,6 @@ namespace ScoreSystem
 {
     public static class ScoreManager
     {
-        private const string ScoreSaveKey = "Score";
         private const string HighScoreSaveKey = "HighScore";
 
         private const int DefaultScore = 0;
@@ -18,11 +17,7 @@ namespace ScoreSystem
         public static UnityAction<EventResponse> OnHighScoreChanged;
 
 
-        public static int Score
-        {
-            get => PlayerPrefs.GetInt(ScoreSaveKey, DefaultScore);
-            private set => PlayerPrefs.SetInt(ScoreSaveKey, value);
-        }
+        public static int Score { get; private set; }
 
         public static int HighScore
         {
