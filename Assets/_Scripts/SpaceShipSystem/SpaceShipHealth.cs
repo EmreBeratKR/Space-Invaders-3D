@@ -8,7 +8,8 @@ namespace SpaceShipSystem
     public class SpaceShipHealth : BehaviourModule<SpaceShip>
     {
         [Header(Keyword.Values)]
-        [SerializeField] private int maxHealth;
+        [SerializeField, Min(0f)] private int maxHealth;
+        [SerializeField, Min(0f)] private int maxAdditionalHealth;
 
 
         private int CurrentHealth
@@ -29,6 +30,8 @@ namespace SpaceShipSystem
                 MainBehaviour.OnHealthChanged?.Invoke(response);
             }
         }
+
+        private int MaxHealedHealth => maxHealth + maxAdditionalHealth;
         
 
         private int m_CurrentHealth;
@@ -87,7 +90,7 @@ namespace SpaceShipSystem
 
         private void Heal(int healAmount)
         {
-            CurrentHealth = Mathf.Min(m_CurrentHealth + healAmount, maxHealth);
+            CurrentHealth = Mathf.Min(m_CurrentHealth + healAmount, MaxHealedHealth);
         }
 
         private bool TryRespawn()

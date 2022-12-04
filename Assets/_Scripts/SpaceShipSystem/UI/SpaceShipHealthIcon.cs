@@ -27,7 +27,7 @@ namespace SpaceShipSystem
 
         private void HandleState(int healthLeft)
         {
-            var shouldActive = Index < healthLeft;
+            var shouldActive = Index < healthLeft - 1;
             gameObject.SetActive(shouldActive);
         }
 
