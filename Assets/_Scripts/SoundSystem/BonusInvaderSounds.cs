@@ -9,6 +9,7 @@ namespace SoundSystem
     {
         [Header(Keyword.References)]
         [SerializeField] private AudioSource idleSound;
+        [SerializeField] private AudioSource dieSound;
 
 
         private void OnEnable()
@@ -27,12 +28,19 @@ namespace SoundSystem
             idleSound.Play();
         }
 
+        private void OnShotBySpaceShip(BonusInvader.EventResponse response)
+        {
+            idleSound.Stop();
+            dieSound.Play();
+        }
+
 
         private void AddListeners()
         {
             if (MainBehaviour)
             {
                 MainBehaviour.OnInitialized += OnInitialized;
+                MainBehaviour.OnShotBySpaceShip += OnShotBySpaceShip;
             }
         }
 
@@ -41,6 +49,7 @@ namespace SoundSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnInitialized -= OnInitialized;
+                MainBehaviour.OnShotBySpaceShip -= OnShotBySpaceShip;
             }
         }
     }

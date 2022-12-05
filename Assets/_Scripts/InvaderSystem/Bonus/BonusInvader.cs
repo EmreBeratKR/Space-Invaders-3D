@@ -36,11 +36,6 @@ namespace InvaderSystem
             Release();
         }
 
-        private void OnDied_Internal(EventResponse response)
-        {
-            Game.Pause();
-        }
-        
         private void OnMainMenuLoaded(MainMenu.EventResponse response)
         {
             Release();
@@ -81,8 +76,7 @@ namespace InvaderSystem
         {
             OnShotBySpaceShip += OnShotBySpaceShip_Internal;
             OnDieAnimationComplete += OnDieAnimationComplete_Internal;
-            OnDied += OnDied_Internal;
-            
+
             MainMenu.OnLoaded += OnMainMenuLoaded;
 
             Game.OnWaveCleared += OnWaveCleared;
@@ -92,8 +86,7 @@ namespace InvaderSystem
         {
             OnShotBySpaceShip -= OnShotBySpaceShip_Internal;
             OnDieAnimationComplete -= OnDieAnimationComplete_Internal;
-            OnDied -= OnDied_Internal;
-            
+
             MainMenu.OnLoaded -= OnMainMenuLoaded;
             
             Game.OnWaveCleared -= OnWaveCleared;

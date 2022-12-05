@@ -9,7 +9,7 @@ namespace InvaderSystem
     {
         [Header(Keyword.Values)]
         [SerializeField, Min(0f)] private float moveSpeed;
-        [SerializeField, Min(0f)] private float lifetime;
+        [SerializeField] private float targetPositionX;
 
 
         private int CurrentScore => ScoreManager.CurrentUfoScore;
@@ -27,7 +27,7 @@ namespace InvaderSystem
         public override void OnAfterInitialized()
         {
             base.OnAfterInitialized();
-            SetLifetime();
+            m_IsDead = false;
         }
 
 
@@ -56,21 +56,10 @@ namespace InvaderSystem
             if (m_IsDead) return;
             
             transform.position += Vector3.right * (Time.deltaTime * moveSpeed);
-        }
-
-        private void SetLifetime()
-        {
-            StartCoroutine(Routine());
             
+            if (transform.position.x < targetPositionX) return;
             
-            IEnumerator Routine()
-            {
-                m_IsDead = false;
-                
-                yield return new WaitForSeconds(lifetime);
-                
-                Release();
-            }
+            Release();
         }
     }
 }
