@@ -59,7 +59,7 @@ namespace SpaceShipSystem
 
                 };
                 
-                MainBehaviour.OnTurretShoot?.Invoke(response);
+                MainBehaviour.OnTurretShootInput?.Invoke(response);
             }
         }
         

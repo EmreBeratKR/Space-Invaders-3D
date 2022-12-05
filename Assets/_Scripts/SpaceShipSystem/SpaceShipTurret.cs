@@ -31,7 +31,7 @@ namespace SpaceShipSystem
         }
 
 
-        private void OnTurretShoot(SpaceShip.EventResponse response)
+        private void OnTurretShootInput(SpaceShip.EventResponse response)
         {
             Shoot();
         }
@@ -44,6 +44,8 @@ namespace SpaceShipSystem
             var newBullet = bulletSpawner.Spawn(MuzzlePosition);
             newBullet.Shoot(MainBehaviour, MuzzlePosition, ShootDirection, shootSpeed);
             
+            MainBehaviour.OnTurretShootPerform?.Invoke(new SpaceShip.EventResponse());
+            
             ScoreManager.IncrementUfoScoreTable();
         }
         
@@ -51,7 +53,7 @@ namespace SpaceShipSystem
         {
             if (MainBehaviour)
             {
-                MainBehaviour.OnTurretShoot += OnTurretShoot;
+                MainBehaviour.OnTurretShootInput += OnTurretShootInput;
             }
         }
 
@@ -59,7 +61,7 @@ namespace SpaceShipSystem
         {
             if (MainBehaviour)
             {
-                MainBehaviour.OnTurretShoot -= OnTurretShoot;
+                MainBehaviour.OnTurretShootInput -= OnTurretShootInput;
             }
         }
     }

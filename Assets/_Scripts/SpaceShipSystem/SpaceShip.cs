@@ -10,7 +10,8 @@ namespace SpaceShipSystem
     {
         public UnityAction<EventResponse> OnPerformMove;
         public UnityAction<EventResponse> OnCancelMove;
-        public UnityAction<EventResponse> OnTurretShoot;
+        public UnityAction<EventResponse> OnTurretShootInput;
+        public UnityAction<EventResponse> OnTurretShootPerform;
         public UnityAction<EventResponse> OnShotByInvader;
         public UnityAction<EventResponse> OnTakeDamage;
         public UnityAction<EventResponse> OnHealthChanged;
