@@ -9,6 +9,7 @@ namespace SoundSystem
     {
         [Header(Keyword.References)]
         [SerializeField] private AudioSource shootSound;
+        [SerializeField] private AudioSource dieSound;
 
 
         private void OnEnable()
@@ -27,12 +28,18 @@ namespace SoundSystem
             shootSound.Play();
         }
 
+        private void OnSpaceShipTakeDamage(SpaceShip.EventResponse response)
+        {
+            dieSound.Play();
+        }
+
 
         private void AddListeners()
         {
             if (MainBehaviour)
             {
                 MainBehaviour.OnTurretShootPerform += OnSpaceShipTurretShootPerform;
+                MainBehaviour.OnTakeDamage += OnSpaceShipTakeDamage;
             }
         }
 
@@ -41,6 +48,7 @@ namespace SoundSystem
             if (MainBehaviour)
             {
                 MainBehaviour.OnTurretShootPerform -= OnSpaceShipTurretShootPerform;
+                MainBehaviour.OnTakeDamage -= OnSpaceShipTakeDamage;
             }
         }
     }
