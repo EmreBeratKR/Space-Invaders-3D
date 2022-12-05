@@ -37,6 +37,8 @@ namespace ScoreSystem
         private static int ms_UfoScoreTableIndex;
 
 
+#if UNITY_EDITOR
+        
         [InitializeOnEnterPlayMode]
         private static void InitializeForEnterPlayMode()
         {
@@ -45,7 +47,9 @@ namespace ScoreSystem
             ms_UfoScoreTableIndex = 0;
         }
         
+#endif
     
+        
         public static void EarnScore(int score)
         {
             var oldScore = Score;

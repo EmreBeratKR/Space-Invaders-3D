@@ -42,6 +42,8 @@ namespace WaveSystem
         
         private static int ms_WaveNumber;
 
+
+#if UNITY_EDITOR
         
         [InitializeOnEnterPlayMode]
         private static void InitializeForEnterPlayMode()
@@ -49,7 +51,9 @@ namespace WaveSystem
             OnWaveNumberChanged = null;
         }
         
+#endif
 
+        
         public static void OnGameStarted(Game.EventResponse response)
         {
             ResetWaveNumber();

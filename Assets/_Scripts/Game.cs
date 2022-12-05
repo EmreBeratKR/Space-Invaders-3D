@@ -18,8 +18,10 @@ public static class Game
 
 
     public static bool IsPaused => Time.timeScale == 0f;
-    
 
+
+#if UNITY_EDITOR
+    
     [InitializeOnEnterPlayMode]
     private static void InitializeForEnterPlayMode()
     {
@@ -31,7 +33,9 @@ public static class Game
         OnWaveCleared = null;
         OnStartedNextWave = null;
     }
-
+    
+#endif
+    
 
     public static void Start()
     {

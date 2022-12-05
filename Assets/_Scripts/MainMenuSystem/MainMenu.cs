@@ -27,7 +27,9 @@ namespace MainMenuSystem
 
 
         private WritableMeshText[] m_WritableMeshTexts;
-        
+
+
+#if UNITY_EDITOR
 
         [InitializeOnEnterPlayMode]
         private static void InitializeForEnterPlayMode()
@@ -35,6 +37,8 @@ namespace MainMenuSystem
             OnLoaded = null;
         }
         
+#endif
+      
         
         private void Awake()
         {
