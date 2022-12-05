@@ -34,6 +34,16 @@ namespace SoundSystem
             dieSound.Play();
         }
 
+        private void OnGameOver(Game.EventResponse response)
+        {
+            idleSound.Stop();
+        }
+
+        private void OnWaveCleared(Game.EventResponse response)
+        {
+            idleSound.Stop();
+        }
+
 
         private void AddListeners()
         {
@@ -42,6 +52,9 @@ namespace SoundSystem
                 MainBehaviour.OnInitialized += OnInitialized;
                 MainBehaviour.OnShotBySpaceShip += OnShotBySpaceShip;
             }
+
+            Game.OnGameOver += OnGameOver;
+            Game.OnWaveCleared += OnWaveCleared;
         }
 
         private void RemoveListeners()
@@ -51,6 +64,9 @@ namespace SoundSystem
                 MainBehaviour.OnInitialized -= OnInitialized;
                 MainBehaviour.OnShotBySpaceShip -= OnShotBySpaceShip;
             }
+            
+            Game.OnGameOver -= OnGameOver;
+            Game.OnWaveCleared -= OnWaveCleared;
         }
     }
 }
